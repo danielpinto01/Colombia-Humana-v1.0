@@ -14,6 +14,7 @@ public class Controller implements ActionListener{
 	
 	public Controller() {
 		mainWindow = new MainWindow(this);
+		mainWindow.showPanelInit();
 		manager = new Manager();
 	}
 
@@ -30,6 +31,15 @@ public class Controller implements ActionListener{
 		case EXIT_APP:
 			mainWindow.setVisible(false);
 			System.out.println("Exit");
+			System.exit(0);
+			break;
+		case INIT_GAME:
+			mainWindow.removeAll();
+			mainWindow.showPanelHistory(this);
+			break;
+		case NEXT_PAGE:
+			mainWindow.setVisible(false);
+			System.out.println("NEXT");
 			System.exit(0);
 			break;
 		default:

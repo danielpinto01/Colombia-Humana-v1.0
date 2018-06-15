@@ -15,8 +15,10 @@ public class MainWindow extends JFrame{
 	private static final String URL_ICON = "src/images/icon.jpg";
 	
 	private JPanelInit jPanelInit;
+	private JPanelHistory jPanelHistory;
 	
 	private JDialogInitPlayer jDialogInitPlayer;
+	
 	
 	public MainWindow(Controller controller) {
 		setTitle(TITLE);
@@ -29,13 +31,24 @@ public class MainWindow extends JFrame{
 		jDialogInitPlayer = new JDialogInitPlayer(this, controller);
 		
 		jPanelInit = new JPanelInit(controller);
-		add(jPanelInit, BorderLayout.CENTER);
 
 		setVisible(true);
 	}
 	
+	public void showPanelInit() {
+		add(jPanelInit, BorderLayout.CENTER);
+	}
+	
 	public void showDialogInitPlayer() {
 		jDialogInitPlayer.setVisible(true);
+	}
+	
+	public void showPanelHistory(Controller controller) {
+		jPanelInit.removeAll();
+		jPanelInit.setVisible(false);
+		jPanelHistory = new JPanelHistory(controller);
+		add(jPanelHistory, BorderLayout.CENTER);
+		revalidate();
 	}
 	
 	public void ocultDialogInitPlayer() {

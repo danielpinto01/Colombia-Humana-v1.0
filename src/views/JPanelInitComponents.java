@@ -81,6 +81,8 @@ public class JPanelInitComponents extends JPanel{
 		btnInitGame.setFont(new Font("Century Gothic", 0,16));
 		btnInitGame.setFocusable(false);
 		btnInitGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
+		btnInitGame.addActionListener(controller);
+		btnInitGame.setActionCommand(Events.INIT_GAME.toString());
 		add(btnInitGame, c);	
 		
 		c.gridy = 4; //Inicia en Y

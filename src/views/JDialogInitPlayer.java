@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -44,9 +45,12 @@ public class JDialogInitPlayer extends JDialog{
 		add(txtCharacterPlayer);
 		
 		btnAddPlayer = new JButton("Agregar");
-		btnAddPlayer.setBackground(Color.BLUE);
+		btnAddPlayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnAddPlayer.setBackground(Color.decode("#f5cb18"));
 		btnAddPlayer.setForeground(Color.WHITE);
-		btnAddPlayer.setFont(new Font("Arial", 1, 12));
+		btnAddPlayer.setFont(new Font("Century Gothic", 0,16));
+		btnAddPlayer.setFocusable(false);
+//		btnAddPlayer.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
 		btnAddPlayer.addActionListener(controller);
 		btnAddPlayer.setActionCommand(Events.ADD_PLAYER_TO_LIST.toString());
 		add(btnAddPlayer);
