@@ -27,6 +27,11 @@ public class Controller implements ActionListener{
 			addPlayerToList();
 			System.out.println(manager.getPlayers());
 			break;
+		case EXIT_APP:
+			mainWindow.setVisible(false);
+			System.out.println("Exit");
+			System.exit(0);
+			break;
 		default:
 			break;
 		}

@@ -94,8 +94,8 @@ public class JPanelInitComponents extends JPanel{
 		btnImageIconExit.setBackground(Color.WHITE);
 		btnImageIconExit.setFocusable(false);
 		btnImageIconExit.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-//		btnImageIconExit.addActionListener(controller);
-//		btnImageIconExit.setActionCommand(Events.EXIT_APP.toString());
+		btnImageIconExit.addActionListener(controller);
+		btnImageIconExit.setActionCommand(Events.EXIT_APP.toString());
 		pnlExit = new JPanel();
 		pnlExit.setBackground(Color.WHITE);
 		pnlExit.add(btnImageIconExit);
