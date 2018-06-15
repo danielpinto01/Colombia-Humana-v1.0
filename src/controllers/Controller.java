@@ -34,7 +34,6 @@ public class Controller implements ActionListener{
 			System.exit(0);
 			break;
 		case INIT_GAME:
-			mainWindow.removeAll();
 			mainWindow.showPanelHistory(this);
 			break;
 		case NEXT_PAGE:

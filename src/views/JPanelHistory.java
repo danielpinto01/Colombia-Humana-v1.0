@@ -26,6 +26,8 @@ public class JPanelHistory extends JPanel{
 		setBackground(Color.GRAY);
 		setLayout(new BorderLayout());
 		init(controller);
+		
+//		setVisible(true);
 	}
 	
 	public void init(Controller controller) {

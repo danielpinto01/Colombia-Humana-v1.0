@@ -44,11 +44,11 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void showPanelHistory(Controller controller) {
-		jPanelInit.removeAll();
-		jPanelInit.setVisible(false);
+		getContentPane().removeAll();
 		jPanelHistory = new JPanelHistory(controller);
 		add(jPanelHistory, BorderLayout.CENTER);
-		revalidate();
+		getContentPane().repaint();		
+		getContentPane().revalidate();
 	}
 	
 	public void ocultDialogInitPlayer() {
