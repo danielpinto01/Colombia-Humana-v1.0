@@ -21,8 +21,8 @@ public class JPanelInitComponents extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private ImageIcon imgIconMain;
 	private JLabel lbImageIconMain;
+	private JButton btnCheckIn;
 	private JButton btnInitGame;
-	private JButton btnHelp;
 	private JPanel pnlExit;
 	private ImageIcon imgIconExit;
 	private JButton btnImageIconExit;
@@ -58,30 +58,30 @@ public class JPanelInitComponents extends JPanel{
 		c.gridx = 3; //Inicia en X
 		c.gridwidth= 1; //Ancho
 		c.insets = new Insets(20, 0, 0, 0);
-		btnInitGame = new JButton("Iniciar");
-		btnInitGame.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnInitGame.setBackground(Color.decode("#f5cb18"));
-		btnInitGame.setForeground(Color.WHITE);
-		btnInitGame.setFont(new Font("Century Gothic", 0,16));
-		btnInitGame.setFocusable(false);
-		btnInitGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
-		btnInitGame.addActionListener(controller);
-		btnInitGame.setActionCommand(Events.SHOW_DIALOG_INIT_PLAYER.toString());
-		add(btnInitGame, c);
+		btnCheckIn = new JButton("Registrarse");
+		btnCheckIn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnCheckIn.setBackground(Color.decode("#f5cb18"));
+		btnCheckIn.setForeground(Color.WHITE);
+		btnCheckIn.setFont(new Font("Century Gothic", 0,16));
+		btnCheckIn.setFocusable(false);
+		btnCheckIn.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
+		btnCheckIn.addActionListener(controller);
+		btnCheckIn.setActionCommand(Events.SHOW_DIALOG_INIT_PLAYER.toString());
+		add(btnCheckIn, c);
 		
 		c.gridy = 3; //Inicia en Y
 		c.weighty = 1;//Alto
 		c.gridx = 3; //Inicia en X
 		c.gridwidth= 1; //Ancho
 		c.insets = new Insets(10, 0, 0, 0);
-		btnHelp = new JButton("Ayuda");
-		btnHelp.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnHelp.setBackground(Color.decode("#89c037"));
-		btnHelp.setForeground(Color.WHITE);
-		btnHelp.setFont(new Font("Century Gothic", 0,16));
-		btnHelp.setFocusable(false);
-		btnHelp.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
-		add(btnHelp, c);	
+		btnInitGame = new JButton("Iniciar");
+		btnInitGame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnInitGame.setBackground(Color.decode("#89c037"));
+		btnInitGame.setForeground(Color.WHITE);
+		btnInitGame.setFont(new Font("Century Gothic", 0,16));
+		btnInitGame.setFocusable(false);
+		btnInitGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
+		add(btnInitGame, c);	
 		
 		c.gridy = 4; //Inicia en Y
 		c.weighty = 1;//Alto

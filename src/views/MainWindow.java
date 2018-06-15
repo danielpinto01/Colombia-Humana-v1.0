@@ -26,7 +26,7 @@ public class MainWindow extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setIconImage(new ImageIcon(URL_ICON).getImage());
 		
-		jDialogInitPlayer = new JDialogInitPlayer(this);
+		jDialogInitPlayer = new JDialogInitPlayer(this, controller);
 		
 		jPanelInit = new JPanelInit(controller);
 		add(jPanelInit, BorderLayout.CENTER);

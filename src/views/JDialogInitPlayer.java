@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 
+import controllers.Controller;
+import controllers.Events;
+
 public class JDialogInitPlayer extends JDialog{
 
 	private static final long serialVersionUID = 1L;
@@ -16,7 +19,7 @@ public class JDialogInitPlayer extends JDialog{
 	private JTextField txtCharacterPlayer;
 	private JButton btnAddPlayer;
 	
-	public JDialogInitPlayer(MainWindow mainWindow) {
+	public JDialogInitPlayer(MainWindow mainWindow, Controller controller) {
 		super(mainWindow, true);
 		setTitle("Agregar Jugador");
 		setSize(500, 500);
@@ -24,10 +27,10 @@ public class JDialogInitPlayer extends JDialog{
 		setLayout(new FlowLayout());
 		setLocationRelativeTo(null);
 		
-		init();
+		init(controller);
 	}
 	
-	public void init() {
+	public void init(Controller controller) {
 		txtNamePlayer= new JTextField(12);
 		txtNamePlayer.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 		txtNamePlayer.setBorder(BorderFactory.createTitledBorder("Nombre:"));
@@ -44,8 +47,8 @@ public class JDialogInitPlayer extends JDialog{
 		btnAddPlayer.setBackground(Color.BLUE);
 		btnAddPlayer.setForeground(Color.WHITE);
 		btnAddPlayer.setFont(new Font("Arial", 1, 12));
-//		btnAddPlayer.addActionListener(controlador);
-//		btnAddPlayer.setActionCommand(Eventos.AGREGAR_USUARIOS_A_LA_LISTA_DE_USUARIOS.toString());
+		btnAddPlayer.addActionListener(controller);
+		btnAddPlayer.setActionCommand(Events.ADD_PLAYER_TO_LIST.toString());
 		add(btnAddPlayer);
 	}
 	
