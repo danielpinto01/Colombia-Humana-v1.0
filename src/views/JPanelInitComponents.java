@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controllers.Controller;
+import controllers.Events;
+
 public class JPanelInitComponents extends JPanel{
 
 	private static final long serialVersionUID = 1L;
@@ -24,13 +27,13 @@ public class JPanelInitComponents extends JPanel{
 	private ImageIcon imgIconExit;
 	private JButton btnImageIconExit;
 	
-	public JPanelInitComponents() {
+	public JPanelInitComponents(Controller controller) {
 		setBackground(Color.WHITE);
 		setLayout(new GridBagLayout());
-		init();
+		init(controller);
 	}
 	
-	public void init() {
+	public void init(Controller controller) {
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.fill = GridBagConstraints.BOTH;
@@ -62,8 +65,8 @@ public class JPanelInitComponents extends JPanel{
 		btnInitGame.setFont(new Font("Century Gothic", 0,16));
 		btnInitGame.setFocusable(false);
 		btnInitGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
-//		btnInitGame.addActionListener(controller);
-//		btnInitGame.setActionCommand(Events.SHOW_ADD_FOLDER.toString());
+		btnInitGame.addActionListener(controller);
+		btnInitGame.setActionCommand(Events.SHOW_DIALOG_INIT_PLAYER.toString());
 		add(btnInitGame, c);
 		
 		c.gridy = 3; //Inicia en Y

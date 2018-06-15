@@ -7,11 +7,13 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controllers.Controller;
+
 public class JPanelInit extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	public JPanelInit() {
+	public JPanelInit(Controller controller) {
 		setBackground(Color.WHITE);
 		
 		setLayout(new GridBagLayout());
@@ -29,6 +31,6 @@ public class JPanelInit extends JPanel{
 		c.weighty = 1;
 		c.gridx = 5; 
 		c.gridwidth= 1;
-		add(new JPanelInitComponents(), c);
+		add(new JPanelInitComponents(controller), c);
 	}
 }

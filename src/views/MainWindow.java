@@ -6,6 +6,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import controllers.Controller;
+
 public class MainWindow extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -14,7 +16,9 @@ public class MainWindow extends JFrame{
 	
 	private JPanelInit jPanelInit;
 	
-	public MainWindow() {
+	private JDialogInitPlayer jDialogInitPlayer;
+	
+	public MainWindow(Controller controller) {
 		setTitle(TITLE);
 		setLayout(new BorderLayout());
 		getContentPane().setBackground(Color.WHITE);
@@ -22,9 +26,27 @@ public class MainWindow extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setIconImage(new ImageIcon(URL_ICON).getImage());
 		
-		jPanelInit = new JPanelInit();
+		jDialogInitPlayer = new JDialogInitPlayer(this);
+		
+		jPanelInit = new JPanelInit(controller);
 		add(jPanelInit, BorderLayout.CENTER);
 
 		setVisible(true);
+	}
+	
+	public void showDialogInitPlayer() {
+		jDialogInitPlayer.setVisible(true);
+	}
+	
+	public void ocultDialogInitPlayer() {
+		jDialogInitPlayer.setVisible(false);
+	}
+	
+	public String getNamePlayer() {
+		return jDialogInitPlayer.getNamePlayer();
+	}
+	
+	public String getCharacterPlayer() {
+		return jDialogInitPlayer.getCharacterPlayer();
 	}
 }
