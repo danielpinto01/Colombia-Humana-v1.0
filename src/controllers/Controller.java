@@ -2,20 +2,24 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import models.Manager;
 import models.Player;
+import persistence.FileManager;
 import views.MainWindow;
 
 public class Controller implements ActionListener{
 	
 	private MainWindow mainWindow;
 	private Manager manager;
+	private FileManager fileManager;
 	
 	public Controller() {
 		mainWindow = new MainWindow(this);
 		mainWindow.showPanelInit();
 		manager = new Manager();
+		fileManager = new FileManager();
 	}
 
 	@Override
@@ -27,6 +31,7 @@ public class Controller implements ActionListener{
 		case ADD_PLAYER_TO_LIST:
 			addPlayerToList();
 			System.out.println(manager.getPlayers());
+			writeJsonPlayers();
 			break;
 		case EXIT_APP:
 			mainWindow.setVisible(false);
@@ -57,5 +62,13 @@ public class Controller implements ActionListener{
 				manager.getPositionInX(), manager.getPositionInY());
 		manager.addPlayerToList(player);
 		ocultDialogInitPlayer();
+	}
+	
+	public void writeJsonPlayers() {
+		try {
+			fileManager.writeJsonPlayer(manager.getPlayers());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
