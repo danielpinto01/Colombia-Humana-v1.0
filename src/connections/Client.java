@@ -33,8 +33,7 @@ public class Client extends Thread{
 		while (!stop) {
 			try {
 				if ((request = input.readUTF())!= null) {
-//					receiveRequestServer(request);
-					sendMessage("hola to server");
+					receiveRequestServer(request);
 				}
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
@@ -52,15 +51,23 @@ public class Client extends Thread{
 	}
 
 
-//	public void receiveRequestServer(String request) throws IOException {
-//		switch (Response.valueOf(request)) {
-//		case MESSAGE_SERVER:
-//			System.out.println(input.readUTF());
-//			break;
-//		default:
-//			break;
-//		}
-//	}
+	public void receiveRequestServer(String request) throws IOException {
+		switch (Response.valueOf(request)) {
+		case MESSAGE_SERVER:
+			recibirmensajedevuelta();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public void recibirmensajedevuelta() {
+		try {
+			System.out.println(input.readUTF());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void sendMessage(String message) throws IOException {
 		output.writeUTF(Request.MESSAGE.toString());

@@ -34,6 +34,7 @@ public class Controller implements ActionListener, KeyListener{
 		try {
 			client = new Client("localHost", 2000);
 			setNamePlayerToClient();
+			client.sendMessage("Al servidor" + manager.getPlayer().getNamePlayer());
 			client.sendInformationPlayer();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -51,7 +52,7 @@ public class Controller implements ActionListener, KeyListener{
 			System.out.println(manager.getPlayer());
 			manager.getPositions();
 			writeJsonPlayers();
-
+			
 			initConnection();
 
 			break;
