@@ -16,15 +16,14 @@ public class Controller implements ActionListener, KeyListener{
 
 	private MainWindow mainWindow;
 	private Manager manager;
-	private FileManager fileManager;
+//	private FileManager fileManager;
 
 	public Controller() {
 		manager = new Manager("Player");
 		mainWindow = new MainWindow(this);
 		mainWindow.showPanelInit();
-		fileManager = new FileManager();
+//		fileManager = new FileManager();
 		start();
-
 	}
 
 	@Override
@@ -80,7 +79,6 @@ public class Controller implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		manager.movePlayer(e.getKeyCode(), mainWindow.getjPanelGame().getWidth(), mainWindow.getjPanelGame().getHeight());
-
 	}
 
 	@Override

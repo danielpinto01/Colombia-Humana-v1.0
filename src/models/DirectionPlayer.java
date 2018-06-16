@@ -1,5 +1,6 @@
 package models;
 
 public enum DirectionPlayer {
-	LEFT, RIGHT;
+	LEFT, 
+	RIGHT;
 }

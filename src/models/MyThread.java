@@ -65,6 +65,5 @@ public abstract class MyThread implements Runnable{
 	}
 
 	public void execute() {
-		
 	}
 }

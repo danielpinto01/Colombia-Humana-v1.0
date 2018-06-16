@@ -47,6 +47,5 @@ public class Manager extends MyThread{
 
 	@Override
 	void executeTask() {
-		
 	}
 }

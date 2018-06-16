@@ -81,14 +81,14 @@ public class FileManager {
 		return playerList;
 	}
 
-	public static void main(String[] args) {
-		FileManager fileManager = new FileManager();
-		try {
-			fileManager.writeJsonOnePlayer(new Player("Daniel", "PALOMA", 500, 600));
-			fileManager.writeJsonOnePlayer(new Player("Felipe", "PALOMA", 500, 600));
-			fileManager.writeJsonOnePlayer(new Player("Camilo", "PALOMA", 500, 600));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		FileManager fileManager = new FileManager();
+//		try {
+//			fileManager.writeJsonOnePlayer(new Player("Daniel", "PALOMA", 500, 600));
+//			fileManager.writeJsonOnePlayer(new Player("Felipe", "PALOMA", 500, 600));
+//			fileManager.writeJsonOnePlayer(new Player("Camilo", "PALOMA", 500, 600));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
