@@ -40,8 +40,8 @@ public class JPanelHistory extends JPanel{
 		btnImageIconNext.setBackground(Color.WHITE);
 		btnImageIconNext.setFocusable(false);
 		btnImageIconNext.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-//		btnImageIconNext.addActionListener(controller);
-//		btnImageIconNext.setActionCommand(Events.EXIT_APP.toString());
+		btnImageIconNext.addActionListener(controller);
+		btnImageIconNext.setActionCommand(Events.NEXT_PAGE.toString());
 		pnlNext = new JPanel();
 		pnlNext.setBackground(Color.WHITE);
 		pnlNext.add(btnImageIconNext);

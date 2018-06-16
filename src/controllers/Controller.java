@@ -37,9 +37,7 @@ public class Controller implements ActionListener{
 			mainWindow.showPanelHistory(this);
 			break;
 		case NEXT_PAGE:
-			mainWindow.setVisible(false);
-			System.out.println("NEXT");
-			System.exit(0);
+			mainWindow.showPanelGame(this);
 			break;
 		default:
 			break;
@@ -55,7 +53,8 @@ public class Controller implements ActionListener{
 	}
 	
 	public void addPlayerToList() {
-		Player player = new Player(mainWindow.getNamePlayer(), mainWindow.getCharacterPlayer());
+		Player player = new Player(mainWindow.getNamePlayer(), mainWindow.getCharacterPlayer(), 
+				manager.getPositionInX(), manager.getPositionInY());
 		manager.addPlayerToList(player);
 		ocultDialogInitPlayer();
 	}

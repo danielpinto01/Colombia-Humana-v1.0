@@ -4,10 +4,14 @@ public class Player {
 	
 	private String namePlayer;
 	private String characterPlayer;
+	private int positionInX;
+	private int positionInY;
 	
-	public Player(String namePlayer, String characterPlayer) {
+	public Player(String namePlayer, String characterPlayer, int positionX, int positionY) {
 		this.namePlayer = namePlayer;
 		this.characterPlayer = characterPlayer;
+		this.positionInX = positionX;
+		this.positionInY = positionY;
 	}
 
 	public String getNamePlayer() {
@@ -26,8 +30,17 @@ public class Player {
 		this.characterPlayer = characterPlayer;
 	}
 
+	public int getPositionInX() {
+		return positionInX;
+	}
+
+	public int getPositionInY() {
+		return positionInY;
+	}
+
 	@Override
 	public String toString() {
-		return "Player [namePlayer=" + namePlayer + ", characterPlayer=" + characterPlayer + "]";
+		return "NamePlayer: " + namePlayer + ", CharacterPlayer:" + characterPlayer + ", PositionInX:"
+				+ positionInX + ", PositionInY:" + positionInY;
 	}
 }

@@ -10,8 +10,8 @@ public class Manager {
 		players = new ArrayList<>();
 	}
 	
-	public static Player createPlayer(String namePlayer, String characterPlayer) {
-		return new Player(namePlayer, characterPlayer);
+	public static Player createPlayer(String namePlayer, String characterPlayer, int positionX, int positionY) {
+		return new Player(namePlayer, characterPlayer, positionX, positionY);
 	}
 	
 	public void addPlayerToList(Player player) {
@@ -20,5 +20,13 @@ public class Manager {
 
 	public ArrayList<Player> getPlayers() {
 		return players;
+	}
+	
+	public int getPositionInX() {
+		return (int)(Math.random()*1000);
+	}
+
+	public int getPositionInY() {
+		return (int)(Math.random()*800);
 	}
 }

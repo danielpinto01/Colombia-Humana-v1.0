@@ -7,6 +7,7 @@ import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 
@@ -17,7 +18,10 @@ public class JDialogInitPlayer extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNamePlayer;
+	
+	
 	private JTextField txtCharacterPlayer;
+	
 	private JButton btnAddPlayer;
 	
 	public JDialogInitPlayer(MainWindow mainWindow, Controller controller) {

@@ -19,6 +19,8 @@ public class MainWindow extends JFrame{
 	
 	private JDialogInitPlayer jDialogInitPlayer;
 	
+	private JPanelGame jPanelGame; 
+	
 	
 	public MainWindow(Controller controller) {
 		setTitle(TITLE);
@@ -31,6 +33,8 @@ public class MainWindow extends JFrame{
 		jDialogInitPlayer = new JDialogInitPlayer(this, controller);
 		
 		jPanelInit = new JPanelInit(controller);
+		
+
 
 		setVisible(true);
 	}
@@ -47,6 +51,14 @@ public class MainWindow extends JFrame{
 		getContentPane().removeAll();
 		jPanelHistory = new JPanelHistory(controller);
 		add(jPanelHistory, BorderLayout.CENTER);
+		getContentPane().repaint();		
+		getContentPane().revalidate();
+	}
+	
+	public void showPanelGame(Controller controller) {
+		getContentPane().removeAll();
+		jPanelGame = new JPanelGame();
+		add(jPanelGame, BorderLayout.CENTER);
 		getContentPane().repaint();		
 		getContentPane().revalidate();
 	}
