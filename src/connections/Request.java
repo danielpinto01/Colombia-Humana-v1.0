@@ -1,7 +1,6 @@
 package connections;
 
 public enum Request {
-	
-	MESSAGE;
-
+	MESSAGE,
+	PLAYER_INFORMATION;
 }

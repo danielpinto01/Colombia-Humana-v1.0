@@ -4,9 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 import javax.swing.SwingWorker;
 
+import connections.Client;
 import models.Manager;
 import models.Player;
 import persistence.FileManager;
@@ -16,15 +18,26 @@ public class Controller implements ActionListener, KeyListener{
 
 	private MainWindow mainWindow;
 	private Manager manager;
-	//	private FileManager fileManager;
+	private FileManager fileManager;
+
+	private Client client;
 
 	public Controller() {
 		manager = new Manager("Player");
 		mainWindow = new MainWindow(this);
 		mainWindow.showPanelInit();
-		//		fileManager = new FileManager();
-
+		fileManager = new FileManager();
 		start();
+	}
+
+	public void initConnection() {
+		try {
+			client = new Client("localHost", 2000);
+			setNamePlayerToClient();
+			client.sendInformationPlayer();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -37,6 +50,10 @@ public class Controller implements ActionListener, KeyListener{
 			manager.setPlayer(getPlayerToWindow());
 			System.out.println(manager.getPlayer());
 			manager.getPositions();
+			writeJsonPlayers();
+
+			initConnection();
+
 			break;
 		case EXIT_APP:
 			mainWindow.setVisible(false);
@@ -55,6 +72,7 @@ public class Controller implements ActionListener, KeyListener{
 		}
 	}
 
+
 	public void showDialogInitPlayer() {
 		mainWindow.showDialogInitPlayer();
 	}
@@ -69,13 +87,13 @@ public class Controller implements ActionListener, KeyListener{
 				manager.getPositionInX(), manager.getPositionInY());
 	}
 
-	//	public void writeJsonPlayers() {
-	//		try {
-	//			fileManager.writeJsonPlayer(manager.getPlayers());
-	//		} catch (IOException e) {
-	//			e.printStackTrace();
-	//		}
-	//	}
+	public void writeJsonPlayers() {
+		try {
+			fileManager.writeJsonOnePlayer(manager.getPlayer());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -102,5 +120,9 @@ public class Controller implements ActionListener, KeyListener{
 			}
 		};
 		refreshBoard.execute();
+	}
+
+	public void setNamePlayerToClient() {
+		client.setNameConnection(manager.getPlayer().getNamePlayer());
 	}
 }
