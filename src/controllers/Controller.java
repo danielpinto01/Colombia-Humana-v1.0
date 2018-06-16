@@ -16,13 +16,14 @@ public class Controller implements ActionListener, KeyListener{
 
 	private MainWindow mainWindow;
 	private Manager manager;
-//	private FileManager fileManager;
+	//	private FileManager fileManager;
 
 	public Controller() {
 		manager = new Manager("Player");
 		mainWindow = new MainWindow(this);
 		mainWindow.showPanelInit();
-//		fileManager = new FileManager();
+		//		fileManager = new FileManager();
+
 		start();
 	}
 
@@ -95,7 +96,7 @@ public class Controller implements ActionListener, KeyListener{
 			protected Void doInBackground() throws Exception {
 				while (!manager.isStop()) {
 					mainWindow.setGame(manager.getPlayer());
-					Thread.sleep(1000);
+					Thread.sleep(100);
 				}
 				return null;
 			}

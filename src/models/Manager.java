@@ -19,7 +19,8 @@ public class Manager extends MyThread{
 	}
 
 	public int getPositionInY() {
-		return (int)(Math.random()*800);
+//		return (int)(Math.random()*800);
+		return 900;
 	}
 	
 	public void setPlayer(Player playerOne) {

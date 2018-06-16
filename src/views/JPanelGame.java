@@ -26,7 +26,7 @@ public class JPanelGame extends JPanel{
 		super.paint(g);
 		if (player != null) {
 			g.drawImage(PLAYER_IMAGE, player.getPositionInX(), player.getPositionInY(), 80, 80, this);
-			g.setFont(new Font("Agency FB", Font.BOLD, 20));
+			g.fillRect(1500, 200, 500, 900);
 		}
 	}
 	
