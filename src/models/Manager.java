@@ -1,25 +1,17 @@
 package models;
 
-import java.util.ArrayList;
-
-public class Manager {
+public class Manager extends MyThread{
 	
-	private ArrayList<Player> players;
+	private Player player;
 	
-	public Manager() {
-		players = new ArrayList<>();
+	public Manager(String name) {
+		super(name);
+		player = new Player();
+		start();
 	}
 	
 	public static Player createPlayer(String namePlayer, String characterPlayer, int positionX, int positionY) {
 		return new Player(namePlayer, characterPlayer, positionX, positionY);
-	}
-	
-	public void addPlayerToList(Player player) {
-		players.add(player);
-	}
-
-	public ArrayList<Player> getPlayers() {
-		return players;
 	}
 	
 	public int getPositionInX() {
@@ -28,5 +20,33 @@ public class Manager {
 
 	public int getPositionInY() {
 		return (int)(Math.random()*800);
+	}
+	
+	public void setPlayer(Player playerOne) {
+		this.player = playerOne;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public void getPositions() {
+		System.out.println(player.getPositionInX() +  "-" + player.getPositionInY());
+	}
+
+	public void movePlayer(int code, int posXFrame, int posYFrame){
+		switch (code) {
+		case 37:
+			player.movePlayer(DirectionPlayer.LEFT, posXFrame, posYFrame);
+			break;
+		case 39:
+			player.movePlayer(DirectionPlayer.RIGHT, posXFrame, posYFrame);
+			break;
+		}
+	}
+
+	@Override
+	void executeTask() {
+		
 	}
 }

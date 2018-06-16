@@ -18,10 +18,7 @@ public class JDialogInitPlayer extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNamePlayer;
-	
-	
 	private JTextField txtCharacterPlayer;
-	
 	private JButton btnAddPlayer;
 	
 	public JDialogInitPlayer(MainWindow mainWindow, Controller controller) {
