@@ -76,7 +76,7 @@ public class Client extends Thread{
 	
 	public void sendInformationPlayer() throws IOException {
 		output.writeUTF(Request.PLAYER_INFORMATION.toString());
-		File file = new File(getNameConnection()+"Information.json");
+		File file = new File(getNameConnection() + "Information.json");
 		byte[] bs = new byte[(int) file.length()]; 
 		System.out.println("Sending File...");
 		readFileToSend(file, bs);

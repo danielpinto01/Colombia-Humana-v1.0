@@ -5,8 +5,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.SwingWorker;
+
+import org.json.simple.parser.ParseException;
 
 import connections.Client;
 import models.Manager;
@@ -23,10 +26,10 @@ public class Controller implements ActionListener, KeyListener{
 	private Client client;
 
 	public Controller() {
+		fileManager = new FileManager();
 		manager = new Manager("Player");
 		mainWindow = new MainWindow(this);
 		mainWindow.showPanelInit();
-		fileManager = new FileManager();
 		start();
 	}
 
@@ -54,7 +57,8 @@ public class Controller implements ActionListener, KeyListener{
 			writeJsonPlayers();
 			
 			initConnection();
-
+			
+			
 			break;
 		case EXIT_APP:
 			mainWindow.setVisible(false);
@@ -72,7 +76,6 @@ public class Controller implements ActionListener, KeyListener{
 			break;
 		}
 	}
-
 
 	public void showDialogInitPlayer() {
 		mainWindow.showDialogInitPlayer();

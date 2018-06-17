@@ -11,9 +11,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+import models.Manager;
 import models.Player;
 
 public class FileManager {
+
+//	private ArrayList<Player> list;
+//
+//	public FileManager() {
+//		list = new ArrayList<>();
+//		list();
+//	}
 
 	@SuppressWarnings("unchecked")
 	public void writeJsonPlayer(ArrayList<Player> players) throws IOException {
@@ -30,7 +40,7 @@ public class FileManager {
 
 		root.put("Players", array);
 
-		FileWriter outputStream = new FileWriter(new File("./players.json"));
+		FileWriter outputStream = new FileWriter(new File("./playersT.json"));
 		outputStream.write(root.toJSONString());
 		outputStream.close();
 	}
@@ -80,15 +90,74 @@ public class FileManager {
 		System.out.println(playerList);
 		return playerList;
 	}
+	
+	@SuppressWarnings("unused")
+	public ArrayList<Player> readObject() throws IOException, ParseException{
+		ArrayList<Player> playerList = new ArrayList<>();
+		JSONParser parser = new JSONParser();
+		JSONObject root = (JSONObject) 
+				parser.parse(new FileReader("playersT.json"));
 
-	//	public static void main(String[] args) {
-	//		FileManager fileManager = new FileManager();
-	//		try {
-	//			fileManager.writeJsonOnePlayer(new Player("Daniel", "PALOMA", 500, 600));
-	//			fileManager.writeJsonOnePlayer(new Player("Felipe", "PALOMA", 500, 600));
-	//			fileManager.writeJsonOnePlayer(new Player("Camilo", "PALOMA", 500, 600));
-	//		} catch (IOException e) {
-	//			e.printStackTrace();
-	//		}
-	//	}
+		JSONArray playersRoot = (JSONArray) root.get("Players");
+
+		ArrayList<String> title = new ArrayList<>();
+		for (int i = 0; i < playersRoot.size(); i++) {
+			JSONObject jsonObject = (JSONObject) playersRoot.get(i);
+
+			String name = (String)jsonObject.get("namePlayer");
+			String character = (String)jsonObject.get("characterPlayer");
+			int x = (int)(long)jsonObject.get("positionX");
+			int y = (int)(long)jsonObject.get("positionY");
+
+//			playerList.add(name);
+//			playerList.add(character);
+//			playerList.add(String.valueOf(x));
+//			playerList.add(String.valueOf(y));
+			
+			Player player = Manager.createPlayer(name, character, x, y);
+			playerList.add(player);
+		}
+		System.out.println(playerList);
+		return playerList;
+	}
+	
+//	public static void main(String[] args) {
+//		FileManager fileManager = new FileManager();
+//		try {
+//			fileManager.readObject();
+//		} catch (IOException | ParseException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
+
+//	public void  list() {
+//		list.add(new Player("Daniel", "PALOMA", 500, 600));
+//		list.add(new Player("dsf", "PALOMA", 500, 600));
+//		list.add(new Player("fdgfh", "PALOMA", 500, 600));
+//	}
+//
+//
+//
+//	public ArrayList<Player> getList() {
+//		return list;
+//	}
+
+
+//	public static void main(String[] args) {
+//		FileManager fileManager = new FileManager();
+//		//			try {
+//		//				fileManager.writeJsonOnePlayer(new Player("Daniel", "PALOMA", 500, 600));
+//		//				fileManager.writeJsonOnePlayer(new Player("Felipe", "PALOMA", 500, 600));
+//		//				fileManager.writeJsonOnePlayer(new Player("Camilo", "PALOMA", 500, 600));
+//		//			} catch (IOException e) {
+//		//				e.printStackTrace();
+//		//		
+////		fileManager.getList();
+//		try {
+//			fileManager.writeJsonPlayer(fileManager.getList());
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }

@@ -20,7 +20,7 @@ public class Manager extends MyThread{
 
 	public int getPositionInY() {
 //		return (int)(Math.random()*800);
-		return 900;
+		return 700;
 	}
 	
 	public void setPlayer(Player playerOne) {
