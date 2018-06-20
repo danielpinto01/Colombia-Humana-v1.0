@@ -6,7 +6,7 @@ public class Player {
 	private String characterPlayer;
 	private int positionInX;
 	private int positionInY;
-	private static final int MOVE_UNITS = 50;
+	private static final int MOVE_UNITS = 20;
 
 	public Player() {
 	}

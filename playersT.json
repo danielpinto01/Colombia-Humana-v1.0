@@ -1,18 +1,18 @@
 {
     "Players": [{
-        "positionY": 600,
+        "positionY": 800,
         "namePlayer": "Daniel",
         "characterPlayer": "PALOMA",
-        "positionX": 500
+        "positionX": 430
     }, {
-        "positionY": 600,
+        "positionY": 700,
         "namePlayer": "dsf",
         "characterPlayer": "PALOMA",
-        "positionX": 500
+        "positionX": 113
     }, {
         "positionY": 600,
         "namePlayer": "fdgfh",
         "characterPlayer": "PALOMA",
-        "positionX": 500
+        "positionX": 321
     }]
 }

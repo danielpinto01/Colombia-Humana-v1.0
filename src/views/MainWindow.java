@@ -34,7 +34,6 @@ public class MainWindow extends JFrame{
 		jDialogInitPlayer = new JDialogInitPlayer(this, controller);
 		jPanelInit = new JPanelInit(controller);
 		jPanelHistory = new JPanelHistory(controller);
-		jPanelGame = new JPanelGame();
 		
 		setVisible(true);
 	}
@@ -54,8 +53,9 @@ public class MainWindow extends JFrame{
 		getContentPane().revalidate();
 	}
 
-	public void showPanelGame(Controller controller) {
+	public void showPanelGame(Controller controller, ArrayList<Player> list) {
 		getContentPane().removeAll();
+		jPanelGame = new JPanelGame(list);
 		add(jPanelGame, BorderLayout.CENTER);
 		getContentPane().repaint();		
 		getContentPane().revalidate();

@@ -70,7 +70,11 @@ public class Controller implements ActionListener, KeyListener{
 			break;
 		case NEXT_PAGE:
 			System.out.println("Next");
-			mainWindow.showPanelGame(this);
+			try {
+				mainWindow.showPanelGame(this, fileManager.readObject());
+			} catch (IOException | ParseException e1) {
+				e1.printStackTrace();
+			}
 			break;
 		default:
 			break;
