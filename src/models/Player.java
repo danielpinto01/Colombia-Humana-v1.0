@@ -6,7 +6,7 @@ public class Player {
 	private String characterPlayer;
 	private int positionInX;
 	private int positionInY;
-	private static final int MOVE_UNITS = 20;
+	private static final int MOVE_UNITS = 50;
 
 	public Player() {
 		
@@ -48,11 +48,13 @@ public class Player {
 		case LEFT:
 			if (positionInX- MOVE_UNITS > 0) {
 				positionInX -= MOVE_UNITS;
+				System.out.println("izquierda" + (positionInX -= MOVE_UNITS));
 			}
 			break;
 		case RIGHT:
-			if (positionInX+ MOVE_UNITS+6 < posXFrame) {
+			if (positionInX+ MOVE_UNITS + 6 < posXFrame) {
 				positionInX += MOVE_UNITS;
+				System.out.println("derecha" + (positionInX += MOVE_UNITS));
 			}
 			break;
 		default:

@@ -29,15 +29,15 @@ public class Controller implements ActionListener, KeyListener{
 		manager = new Manager("Player");
 		mainWindow = new MainWindow(this);
 		mainWindow.showPanelInit();
-		start();
 	}
 
 	public void initConnection() {
 		try {
 			client = new Client("localHost", 2000);
 			setNamePlayerToClient();
-			client.sendMessage("Al servidor" + manager.getPlayer().getNamePlayer());
+//			client.sendMessage("Al servidor" + manager.getPlayer().getNamePlayer());
 			client.sendInformationPlayer();
+			start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -53,11 +53,10 @@ public class Controller implements ActionListener, KeyListener{
 			manager.setPlayer(getPlayerToWindow());
 			System.out.println(manager.getPlayer());
 			manager.getPositions();
-			writeJsonPlayers();
-			
+			writeJsonOnePlayer();
+
 			initConnection();
-			
-			
+
 			break;
 		case EXIT_APP:
 			mainWindow.setVisible(false);
@@ -70,7 +69,7 @@ public class Controller implements ActionListener, KeyListener{
 		case NEXT_PAGE:
 			System.out.println("Next");
 			try {
-				mainWindow.showPanelGame(this, fileManager.readObject());
+				mainWindow.showPanelGame(this, fileManager.readTotalListFromServer());
 			} catch (IOException | ParseException e1) {
 				e1.printStackTrace();
 			}
@@ -94,7 +93,7 @@ public class Controller implements ActionListener, KeyListener{
 				manager.getPositionInX(), manager.getPositionInY());
 	}
 
-	public void writeJsonPlayers() {
+	public void writeJsonOnePlayer() {
 		try {
 			fileManager.writeJsonOnePlayer(manager.getPlayer());
 		} catch (IOException e) {
@@ -104,7 +103,7 @@ public class Controller implements ActionListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		manager.movePlayer(e.getKeyCode(), mainWindow.getjPanelGame().getWidth(), mainWindow.getjPanelGame().getHeight());
+		manager.movePlayer(e.getKeyCode(), 500, 600);
 	}
 
 	@Override
@@ -119,11 +118,12 @@ public class Controller implements ActionListener, KeyListener{
 		SwingWorker<Void, Void> refreshBoard = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
-				while (!manager.isStop()) {
+				//				while (!manager.isStop()) {
+				while (true) {
 					mainWindow.setGame(manager.getPlayer());
 					Thread.sleep(100);
 				}
-				return null;
+//				return null;
 			}
 		};
 		refreshBoard.execute();

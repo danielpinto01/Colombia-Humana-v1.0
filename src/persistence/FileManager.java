@@ -83,11 +83,11 @@ public class FileManager {
 	}
 	
 	@SuppressWarnings("unused")
-	public ArrayList<Player> readObject() throws IOException, ParseException{
+	public ArrayList<Player> readTotalListFromServer() throws IOException, ParseException{
 		ArrayList<Player> playerList = new ArrayList<>();
 		JSONParser parser = new JSONParser();
 		JSONObject root = (JSONObject) 
-				parser.parse(new FileReader("playersT.json"));
+				parser.parse(new FileReader("TotalListPlayers.json"));
 
 		JSONArray playersRoot = (JSONArray) root.get("Players");
 
