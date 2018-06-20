@@ -53,9 +53,9 @@ public class MainWindow extends JFrame{
 		getContentPane().revalidate();
 	}
 
-	public void showPanelGame(Controller controller, ArrayList<Player> list) {
+	public void showPanelGame(Controller controller, Player player,ArrayList<Player> list) {
 		getContentPane().removeAll();
-		jPanelGame = new JPanelGame(list);
+		jPanelGame = new JPanelGame(player,list);
 		add(jPanelGame, BorderLayout.CENTER);
 		getContentPane().repaint();		
 		getContentPane().revalidate();
@@ -77,8 +77,8 @@ public class MainWindow extends JFrame{
 		return jPanelGame;
 	}
 
-	public void setGame(Player player) {
-		jPanelGame.setCoordinates(player);
+	public void setGame(Player player,  ArrayList<Player> list) {
+		jPanelGame.setCoordinates(player, list);
 		jPanelGame.repaint();
 	}
 }

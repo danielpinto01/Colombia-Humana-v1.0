@@ -35,28 +35,28 @@ public class Controller implements ActionListener, KeyListener{
 		try {
 			client = new Client("localHost", 2000);
 			setNamePlayerToClient();
-//			client.sendMessage("Al servidor" + manager.getPlayer().getNamePlayer());
+			//			client.sendMessage("Al servidor" + manager.getPlayer().getNamePlayer());
 			client.sendInformationPlayer();
-			start();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e){
 		switch (Events.valueOf(e.getActionCommand())) {
 		case SHOW_DIALOG_INIT_PLAYER:
 			showDialogInitPlayer();
 			break;
 		case ADD_PLAYER_TO_LIST:
 			manager.setPlayer(getPlayerToWindow());
-			System.out.println(manager.getPlayer());
+//			System.out.println(manager.getPlayer());
 			manager.getPositions();
 			writeJsonOnePlayer();
 
 			initConnection();
-
+	
 			break;
 		case EXIT_APP:
 			mainWindow.setVisible(false);
@@ -68,11 +68,8 @@ public class Controller implements ActionListener, KeyListener{
 			break;
 		case NEXT_PAGE:
 			System.out.println("Next");
-			try {
-				mainWindow.showPanelGame(this, fileManager.readTotalListFromServer());
-			} catch (IOException | ParseException e1) {
-				e1.printStackTrace();
-			}
+			mainWindow.showPanelGame(this, manager.getPlayer(), null);
+			startGame();
 			break;
 		default:
 			break;
@@ -103,27 +100,27 @@ public class Controller implements ActionListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		manager.movePlayer(e.getKeyCode(), 500, 600);
+		manager.movePlayer(e.getKeyCode());
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
+	public void keyReleased(KeyEvent e) {
+		manager.movePlayer(e.getKeyCode());
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 	}
 
-	private void start() {
+	private void startGame() {
 		SwingWorker<Void, Void> refreshBoard = new SwingWorker<Void, Void>() {
 			@Override
 			protected Void doInBackground() throws Exception {
-				//				while (!manager.isStop()) {
-				while (true) {
-					mainWindow.setGame(manager.getPlayer());
+				while (!manager.isStop()) {
+					mainWindow.setGame(manager.getPlayer(), fileManager.readTotalListFromServer());
 					Thread.sleep(100);
 				}
-//				return null;
+				return null;
 			}
 		};
 		refreshBoard.execute();

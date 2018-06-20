@@ -43,20 +43,26 @@ public class Player {
 		return positionInY;
 	}
 
-	public void movePlayer(DirectionPlayer directionPlayer, int posXFrame, int posYFrame){
+	public void movePlayer(DirectionPlayer directionPlayer){
 		switch (directionPlayer) {
 		case LEFT:
-			if (positionInX- MOVE_UNITS > 0) {
-				positionInX -= MOVE_UNITS;
-				System.out.println("izquierda" + (positionInX -= MOVE_UNITS));
-			}
+			positionInX -= MOVE_UNITS;
 			break;
 		case RIGHT:
-			if (positionInX+ MOVE_UNITS + 6 < posXFrame) {
-				positionInX += MOVE_UNITS;
-				System.out.println("derecha" + (positionInX += MOVE_UNITS));
-			}
+			positionInX += MOVE_UNITS;
 			break;
+//		case LEFT:
+//			if (positionInX- MOVE_UNITS > 0) {
+//				positionInX -= MOVE_UNITS;
+//				System.out.println("izquierda" + (positionInX -= MOVE_UNITS));
+//			}
+//			break;
+//		case RIGHT:
+//			if (positionInX+ MOVE_UNITS + 6 < posXFrame) {
+//				positionInX += MOVE_UNITS;
+//				System.out.println("derecha" + (positionInX += MOVE_UNITS));
+//			}
+//			break;
 		default:
 			break;
 		}

@@ -20,10 +20,10 @@ public class JPanelGame extends JPanel{
 	private ArrayList<Player> list;
 
 
-	public JPanelGame(ArrayList<Player> list) {
-		this.list = list;
-		setBackground(Color.WHITE);
+		public JPanelGame(Player player,ArrayList<Player> list) {
 		player = new Player();
+		this.list = list;
+		setBackground(Color.RED);
 		repaint();
 	}
 
@@ -31,15 +31,17 @@ public class JPanelGame extends JPanel{
 	public void paint(Graphics g) {
 		super.paint(g);
 		if (player != null) {
-			for (Player player : list) {
-				g.drawImage(PLAYER_IMAGE, player.getPositionInX(), player.getPositionInY(), 200, 200, this);
-				g.drawImage(IMAGE, 1500, 0, 200, 200, this);
-				g.fillRect(1500, 200, 500, 900);
-			}
+			g.drawImage(PLAYER_IMAGE, player.getPositionInX(), player.getPositionInY(), 200, 200, this);
+			g.drawImage(IMAGE, 1500, 0, 200, 200, this);
+			g.fillRect(1500, 200, 500, 900);
+		}
+		for (Player player : list) {
+			g.drawImage(PLAYER_IMAGE, player.getPositionInX(), player.getPositionInY(), 200, 200, this);
 		}
 	}
 
-	public void setCoordinates(Player player) {
+	public void setCoordinates(Player player, ArrayList<Player> players ) {
 		this.player = player;
+		list = players;
 	}
 }

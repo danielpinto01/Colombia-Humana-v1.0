@@ -34,13 +34,13 @@ public class Manager extends MyThread{
 		System.out.println(player.getPositionInX() +  "-" + player.getPositionInY());
 	}
 
-	public void movePlayer(int code, int posXFrame, int posYFrame){
+	public void movePlayer(int code){
 		switch (code) {
 		case 37:
-			player.movePlayer(DirectionPlayer.LEFT, posXFrame, posYFrame);
+			player.movePlayer(DirectionPlayer.LEFT);
 			break;
 		case 39:
-			player.movePlayer(DirectionPlayer.RIGHT, posXFrame, posYFrame);
+			player.movePlayer(DirectionPlayer.RIGHT);
 			break;
 		}
 	}
