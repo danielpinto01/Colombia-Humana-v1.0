@@ -11,19 +11,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import models.Manager;
 import models.Player;
 
 public class FileManager {
-
-//	private ArrayList<Player> list;
-//
-//	public FileManager() {
-//		list = new ArrayList<>();
-//		list();
-//	}
 
 	@SuppressWarnings("unchecked")
 	public void writeJsonPlayer(ArrayList<Player> players) throws IOException {

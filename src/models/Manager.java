@@ -19,7 +19,6 @@ public class Manager extends MyThread{
 	}
 
 	public int getPositionInY() {
-//		return (int)(Math.random()*800);
 		return 700;
 	}
 	
@@ -48,5 +47,6 @@ public class Manager extends MyThread{
 
 	@Override
 	void executeTask() {
+		
 	}
 }

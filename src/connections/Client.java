@@ -91,8 +91,6 @@ public class Client extends Thread{
 		inputStream.close();
 	}
 	
-
-	
 	public static void main(String[] args) {
 		try {
 			new Client("",  2000);
@@ -100,6 +98,4 @@ public class Client extends Thread{
 			e.printStackTrace();
 		}
 	}
-	
-
 }

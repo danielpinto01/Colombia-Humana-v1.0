@@ -7,7 +7,6 @@ import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 
@@ -51,7 +50,6 @@ public class JDialogInitPlayer extends JDialog{
 		btnAddPlayer.setForeground(Color.WHITE);
 		btnAddPlayer.setFont(new Font("Century Gothic", 0,16));
 		btnAddPlayer.setFocusable(false);
-//		btnAddPlayer.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
 		btnAddPlayer.addActionListener(controller);
 		btnAddPlayer.setActionCommand(Events.ADD_PLAYER_TO_LIST.toString());
 		add(btnAddPlayer);

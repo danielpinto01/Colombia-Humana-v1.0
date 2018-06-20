@@ -9,6 +9,7 @@ public class Player {
 	private static final int MOVE_UNITS = 20;
 
 	public Player() {
+		
 	}
 
 	public Player(String namePlayer, String characterPlayer, int positionX, int positionY) {
