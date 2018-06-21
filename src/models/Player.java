@@ -6,17 +6,20 @@ public class Player {
 	private String characterPlayer;
 	private int positionInX;
 	private int positionInY;
-	private static final int MOVE_UNITS = 50;
+	private static final int MOVE_UNITS = 10;
+	
+	private int lifePlayer;
 
 	public Player() {
 		
 	}
 
-	public Player(String namePlayer, String characterPlayer, int positionX, int positionY) {
+	public Player(String namePlayer, String characterPlayer, int positionX, int positionY, int lifePlayer) {
 		this.namePlayer = namePlayer;
 		this.characterPlayer = characterPlayer;
 		this.positionInX = positionX;
 		this.positionInY = positionY;
+		this.lifePlayer = 100;
 	}
 
 	public String getNamePlayer() {
@@ -41,6 +44,22 @@ public class Player {
 
 	public int getPositionInY() {
 		return positionInY;
+	}
+
+	public int getLifePlayer() {
+		return lifePlayer;
+	}
+
+	public void setLifePlayer(int lifePlayer) {
+		this.lifePlayer = lifePlayer;
+	}
+
+	public void setPositionInX(int positionInX) {
+		this.positionInX = positionInX;
+	}
+
+	public void setPositionInY(int positionInY) {
+		this.positionInY = positionInY;
 	}
 
 	public void movePlayer(DirectionPlayer directionPlayer){
@@ -70,7 +89,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "NamePlayer: " + namePlayer + ", CharacterPlayer:" + characterPlayer + ", PositionInX:"
-				+ positionInX + ", PositionInY:" + positionInY;
+		return "Player [namePlayer=" + namePlayer + ", characterPlayer=" + characterPlayer + ", positionInX="
+				+ positionInX + ", positionInY=" + positionInY + ", lifePlayer=" + lifePlayer + "]";
 	}
 }

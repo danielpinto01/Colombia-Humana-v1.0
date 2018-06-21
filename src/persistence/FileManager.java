@@ -17,6 +17,25 @@ import models.Player;
 public class FileManager {
 
 	@SuppressWarnings("unchecked")
+	public void writeJsonOnePlayer(Player player) throws IOException {
+		JSONObject root = new JSONObject();
+		JSONArray array = new JSONArray();
+		JSONObject not = new JSONObject();
+		not.put("namePlayer", player.getNamePlayer());
+		not.put("characterPlayer", player.getCharacterPlayer());
+		not.put("positionX", player.getPositionInX());
+		not.put("positionY", player.getPositionInY());
+		not.put("lifePlayer", player.getLifePlayer());
+		array.add(not);
+		
+		root.put("Player", array);
+		
+		FileWriter outputStream = new FileWriter(new File(player.getNamePlayer() + "Information.json"));
+		outputStream.write(root.toJSONString());
+		outputStream.close();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public void writeJsonPlayer(ArrayList<Player> players) throws IOException {
 		JSONObject root = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -26,60 +45,14 @@ public class FileManager {
 			not.put("characterPlayer", player.getCharacterPlayer());
 			not.put("positionX", player.getPositionInX());
 			not.put("positionY", player.getPositionInY());
+			not.put("lifePlayer", player.getLifePlayer());
 			array.add(not);
 		}
-
 		root.put("Players", array);
 
 		FileWriter outputStream = new FileWriter(new File("./playersT.json"));
 		outputStream.write(root.toJSONString());
 		outputStream.close();
-	}
-
-	@SuppressWarnings("unchecked")
-	public void writeJsonOnePlayer(Player player) throws IOException {
-		JSONObject root = new JSONObject();
-		JSONArray array = new JSONArray();
-		JSONObject not = new JSONObject();
-		not.put("namePlayer", player.getNamePlayer());
-		not.put("characterPlayer", player.getCharacterPlayer());
-		not.put("positionX", player.getPositionInX());
-		not.put("positionY", player.getPositionInY());
-		array.add(not);
-
-		root.put("Player", array);
-
-		FileWriter outputStream = new FileWriter(new File(player.getNamePlayer() + "Information.json"));
-		outputStream.write(root.toJSONString());
-		outputStream.close();
-	}
-
-
-	@SuppressWarnings("unused")
-	public ArrayList<String> read() throws IOException, ParseException{
-		ArrayList<String> playerList = new ArrayList<>();
-		JSONParser parser = new JSONParser();
-		JSONObject root = (JSONObject) 
-				parser.parse(new FileReader("players.json"));
-
-		JSONArray playersRoot = (JSONArray) root.get("Players");
-
-		ArrayList<String> title = new ArrayList<>();
-		for (int i = 0; i < playersRoot.size(); i++) {
-			JSONObject jsonObject = (JSONObject) playersRoot.get(i);
-
-			String name = (String)jsonObject.get("namePlayer");
-			String character = (String)jsonObject.get("characterPlayer");
-			int x = (int)(long)jsonObject.get("positionX");
-			int y = (int)(long)jsonObject.get("positionY");
-
-			playerList.add(name);
-			playerList.add(character);
-			playerList.add(String.valueOf(x));
-			playerList.add(String.valueOf(y));
-		}
-		System.out.println(playerList);
-		return playerList;
 	}
 	
 	@SuppressWarnings("unused")
@@ -99,56 +72,11 @@ public class FileManager {
 			String character = (String)jsonObject.get("characterPlayer");
 			int x = (int)(long)jsonObject.get("positionX");
 			int y = (int)(long)jsonObject.get("positionY");
-
-//			playerList.add(name);
-//			playerList.add(character);
-//			playerList.add(String.valueOf(x));
-//			playerList.add(String.valueOf(y));
+			int life = (int)(long)jsonObject.get("lifePlayer");
 			
-			Player player = Manager.createPlayer(name, character, x, y);
+			Player player = Manager.createPlayer(name, character, x, y, life);
 			playerList.add(player);
 		}
-		System.out.println(playerList);
 		return playerList;
 	}
-	
-//	public static void main(String[] args) {
-//		FileManager fileManager = new FileManager();
-//		try {
-//			fileManager.readObject();
-//		} catch (IOException | ParseException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
-
-//	public void  list() {
-//		list.add(new Player("Daniel", "PALOMA", 500, 600));
-//		list.add(new Player("dsf", "PALOMA", 500, 600));
-//		list.add(new Player("fdgfh", "PALOMA", 500, 600));
-//	}
-//
-//
-//
-//	public ArrayList<Player> getList() {
-//		return list;
-//	}
-
-
-//	public static void main(String[] args) {
-//		FileManager fileManager = new FileManager();
-//		//			try {
-//		//				fileManager.writeJsonOnePlayer(new Player("Daniel", "PALOMA", 500, 600));
-//		//				fileManager.writeJsonOnePlayer(new Player("Felipe", "PALOMA", 500, 600));
-//		//				fileManager.writeJsonOnePlayer(new Player("Camilo", "PALOMA", 500, 600));
-//		//			} catch (IOException e) {
-//		//				e.printStackTrace();
-//		//		
-////		fileManager.getList();
-//		try {
-//			fileManager.writeJsonPlayer(fileManager.getList());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
 }

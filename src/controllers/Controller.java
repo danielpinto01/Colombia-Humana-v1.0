@@ -5,10 +5,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.SwingWorker;
+import javax.swing.Timer;
 
 import org.json.simple.parser.ParseException;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.IO;
 
 import connections.Client;
 import models.Manager;
@@ -16,7 +20,7 @@ import models.Player;
 import persistence.FileManager;
 import views.MainWindow;
 
-public class Controller implements ActionListener, KeyListener{
+public class Controller implements IObserver, ActionListener, KeyListener{
 
 	private MainWindow mainWindow;
 	private Manager manager;
@@ -37,7 +41,7 @@ public class Controller implements ActionListener, KeyListener{
 			setNamePlayerToClient();
 			//			client.sendMessage("Al servidor" + manager.getPlayer().getNamePlayer());
 			client.sendInformationPlayer();
-			
+			client.addObserver(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +72,7 @@ public class Controller implements ActionListener, KeyListener{
 			break;
 		case NEXT_PAGE:
 			System.out.println("Next");
-			mainWindow.showPanelGame(this, manager.getPlayer(), null);
+			mainWindow.showPanelGame(this, manager.getPlayer(), manager.getPlayers());
 			startGame();
 			break;
 		default:
@@ -87,7 +91,7 @@ public class Controller implements ActionListener, KeyListener{
 	public Player getPlayerToWindow() {
 		ocultDialogInitPlayer();
 		return new Player(mainWindow.getNamePlayer(), mainWindow.getCharacterPlayer(), 
-				manager.getPositionInX(), manager.getPositionInY());
+				manager.getPositionInX(), manager.getPositionInY(), manager.getPlayer().getLifePlayer());
 	}
 
 	public void writeJsonOnePlayer() {
@@ -117,7 +121,8 @@ public class Controller implements ActionListener, KeyListener{
 			@Override
 			protected Void doInBackground() throws Exception {
 				while (!manager.isStop()) {
-					mainWindow.setGame(manager.getPlayer(), fileManager.readTotalListFromServer());
+					mainWindow.repaint();
+//					mainWindow.setGame(manager.getPlayer(), fileManager.readTotalListFromServer());
 					Thread.sleep(100);
 				}
 				return null;
@@ -129,4 +134,17 @@ public class Controller implements ActionListener, KeyListener{
 	public void setNamePlayerToClient() {
 		client.setNameConnection(manager.getPlayer().getNamePlayer());
 	}
+
+	@Override
+	public void updateUsers(ArrayList<Player> players) {
+		manager.checkPositions(players);
+	}
+	
+	
+//	public void addPlayerToListViews() throws IOException, ParseException {
+//		ArrayList<Player> list = fileManager.readTotalListFromServer();
+//		for (Player player : list) {
+//			manager.addPlayerToList(player);
+//		}
+//	}
 }

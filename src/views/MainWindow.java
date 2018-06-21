@@ -77,8 +77,8 @@ public class MainWindow extends JFrame{
 		return jPanelGame;
 	}
 
-	public void setGame(Player player,  ArrayList<Player> list) {
-		jPanelGame.setCoordinates(player, list);
-		jPanelGame.repaint();
-	}
+//	public void setGame(Player player,  ArrayList<Player> list) {
+//		jPanelGame.setCoordinates(player, list);
+//		jPanelGame.repaint();
+//	}
 }
