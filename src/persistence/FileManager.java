@@ -1,82 +1,39 @@
 package persistence;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
-import models.Manager;
-import models.Player;
+import models.User;
 
 public class FileManager {
 
-	@SuppressWarnings("unchecked")
-	public void writeJsonOnePlayer(Player player) throws IOException {
-		JSONObject root = new JSONObject();
-		JSONArray array = new JSONArray();
-		JSONObject not = new JSONObject();
-		not.put("namePlayer", player.getNamePlayer());
-		not.put("characterPlayer", player.getCharacterPlayer());
-		not.put("positionX", player.getPositionInX());
-		not.put("positionY", player.getPositionInY());
-		not.put("lifePlayer", player.getLifePlayer());
-		array.add(not);
-		
-		root.put("Player", array);
-		
-		FileWriter outputStream = new FileWriter(new File(player.getNamePlayer() + "Information.json"));
-		outputStream.write(root.toJSONString());
-		outputStream.close();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void writeJsonPlayer(ArrayList<Player> players) throws IOException {
-		JSONObject root = new JSONObject();
-		JSONArray array = new JSONArray();
-		for (Player player : players) {
-			JSONObject not = new JSONObject();
-			not.put("namePlayer", player.getNamePlayer());
-			not.put("characterPlayer", player.getCharacterPlayer());
-			not.put("positionX", player.getPositionInX());
-			not.put("positionY", player.getPositionInY());
-			not.put("lifePlayer", player.getLifePlayer());
-			array.add(not);
-		}
-		root.put("Players", array);
-
-		FileWriter outputStream = new FileWriter(new File("./playersT.json"));
-		outputStream.write(root.toJSONString());
-		outputStream.close();
-	}
-	
-	@SuppressWarnings("unused")
-	public ArrayList<Player> readTotalListFromServer() throws IOException, ParseException{
-		ArrayList<Player> playerList = new ArrayList<>();
-		JSONParser parser = new JSONParser();
-		JSONObject root = (JSONObject) 
-				parser.parse(new FileReader("TotalListPlayers.json"));
-
-		JSONArray playersRoot = (JSONArray) root.get("Players");
-
-		ArrayList<String> title = new ArrayList<>();
-		for (int i = 0; i < playersRoot.size(); i++) {
-			JSONObject jsonObject = (JSONObject) playersRoot.get(i);
-
-			String name = (String)jsonObject.get("namePlayer");
-			String character = (String)jsonObject.get("characterPlayer");
-			int x = (int)(long)jsonObject.get("positionX");
-			int y = (int)(long)jsonObject.get("positionY");
-			int life = (int)(long)jsonObject.get("lifePlayer");
-			
-			Player player = Manager.createPlayer(name, character, x, y, life);
-			playerList.add(player);
-		}
-		return playerList;
+	public static ArrayList<User> readUsers(File file) {
+		ArrayList<User> users = new ArrayList<User>();
+		SAXBuilder builder = new SAXBuilder();
+	    try {
+	        Document document = (Document) builder.build(file);
+	        Element rootNode = (Element) ((org.jdom2.Document) document).getRootElement();
+	        List<Element> userFileList = ((org.jdom2.Element) rootNode).getChildren("Player");
+	        User user;
+	        for (Element player : userFileList) {
+	        	String name = player.getChildTextTrim("Name");
+	        	int x = Integer.parseInt(player.getChildTextTrim("X"));
+	        	int y = Integer.parseInt(player.getChildTextTrim("Y"));
+	        	user = new User(name, x, y);
+	            users.add(user);
+	        }
+	    }catch (IOException io) {
+	        System.err.println(io.getMessage());
+	    }catch (JDOMException jdomex) {
+	        System.err.println(jdomex.getMessage());
+	    }
+		return users;
 	}
 }

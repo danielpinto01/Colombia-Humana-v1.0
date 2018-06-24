@@ -2,9 +2,11 @@ package controllers;
 
 import java.util.ArrayList;
 
-import models.Player;
+import models.User;
 
 public interface IObserver {
 
-	void updateUsers(ArrayList<Player> players);
+	void startGame();
+	
+	void loadUsers(ArrayList<User> users);
 }

@@ -2,94 +2,42 @@ package models;
 
 public class Player {
 
-	private String namePlayer;
-	private String characterPlayer;
-	private int positionInX;
-	private int positionInY;
-	private static final int MOVE_UNITS = 10;
+	private String name;
+	private int life;
+	private int victories;
+	private Area area;
 	
-	private int lifePlayer;
-
-	public Player() {
-		
+	public Player(String name, Area area) {
+		this.name = name;
+		this.area = area;
+		this.life = 100;
 	}
-
-	public Player(String namePlayer, String characterPlayer, int positionX, int positionY, int lifePlayer) {
-		this.namePlayer = namePlayer;
-		this.characterPlayer = characterPlayer;
-		this.positionInX = positionX;
-		this.positionInY = positionY;
-		this.lifePlayer = 100;
+	
+	public void setVictories(int victories) {
+		this.victories = victories;
 	}
-
-	public String getNamePlayer() {
-		return namePlayer;
+	
+	public void setLife(int life) {
+		this.life = life;
 	}
-
-	public void setNamePlayer(String namePlayer) {
-		this.namePlayer = namePlayer;
+	
+	public void move(Direction direction) {
+		 area.move(direction);
+	}	
+	
+	public String getName() {
+		return name;
 	}
-
-	public String getCharacterPlayer() {
-		return characterPlayer;
+	
+	public int getLife() {
+		return life;
 	}
-
-	public void setCharacterPlayer(String characterPlayer) {
-		this.characterPlayer = characterPlayer;
+	
+	public Area getArea() {
+		return area;
 	}
-
-	public int getPositionInX() {
-		return positionInX;
-	}
-
-	public int getPositionInY() {
-		return positionInY;
-	}
-
-	public int getLifePlayer() {
-		return lifePlayer;
-	}
-
-	public void setLifePlayer(int lifePlayer) {
-		this.lifePlayer = lifePlayer;
-	}
-
-	public void setPositionInX(int positionInX) {
-		this.positionInX = positionInX;
-	}
-
-	public void setPositionInY(int positionInY) {
-		this.positionInY = positionInY;
-	}
-
-	public void movePlayer(DirectionPlayer directionPlayer){
-		switch (directionPlayer) {
-		case LEFT:
-			positionInX -= MOVE_UNITS;
-			break;
-		case RIGHT:
-			positionInX += MOVE_UNITS;
-			break;
-//		case LEFT:
-//			if (positionInX- MOVE_UNITS > 0) {
-//				positionInX -= MOVE_UNITS;
-//				System.out.println("izquierda" + (positionInX -= MOVE_UNITS));
-//			}
-//			break;
-//		case RIGHT:
-//			if (positionInX+ MOVE_UNITS + 6 < posXFrame) {
-//				positionInX += MOVE_UNITS;
-//				System.out.println("derecha" + (positionInX += MOVE_UNITS));
-//			}
-//			break;
-		default:
-			break;
-		}
-	}
-
-	@Override
-	public String toString() {
-		return "Player [namePlayer=" + namePlayer + ", characterPlayer=" + characterPlayer + ", positionInX="
-				+ positionInX + ", positionInY=" + positionInY + ", lifePlayer=" + lifePlayer + "]";
+	
+	public int getVictories() {
+		return victories;
 	}
 }

@@ -1,45 +1,32 @@
 package models;
 
-public abstract class MyThread implements Runnable{
+public abstract class MyThread implements Runnable {
 
 	private Thread thread;
-	private String name;
+	private String text;
+	private int sleep;
 	private boolean stop;
 	private boolean pause;
 
-	public MyThread(String name) {
-		this.name = name;
-		thread = new Thread(this, this.name);
-	}
-
-	public void start(){
-		thread.start();
-	}
-
-	public synchronized void stop(){
-		pause = false;
-		stop = true;
-		notify();
-	}
-	
-	public boolean isStop() {
-		return stop;
-	}
-	
-	public synchronized void pause(){
-		pause = true;
-	}
-
-	public synchronized void resume(){
-		pause = false;
-		notify();
+	public MyThread(String text, int sleep) {
+		this.text = text;
+		this.sleep = sleep;
+		thread = new Thread(this);
 	}
 
 	@Override
 	public void run() {
 		while (!stop) {
-			executeTask();
+			try {
+				Thread.sleep(sleep);
+				execute();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			synchronized (this) {
+				if (stop) {
+					break;
+				}
 				while (pause) {
 					try {
 						wait();
@@ -47,24 +34,48 @@ public abstract class MyThread implements Runnable{
 						e.printStackTrace();
 					}
 				}
-				if (stop)
-					break;
-			}
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
 		}
 	}
+	
+	abstract public void execute();
 
-	abstract void executeTask();
+	public void start() {
+		thread.start();
+	}
+
+	public synchronized void stop() {
+		stop = true;
+		notify();
+	}
+
+	public synchronized void pause() {
+		pause = true;
+		notify();
+	}
+
+	public synchronized void resume() {
+		pause = false;
+		notify();
+	}
 
 	public Thread getThread() {
 		return thread;
 	}
 
-	public void execute() {
-		
+	public String getText() {
+		return text;
+	}
+	
+	public int getSleep() {
+		return sleep;
+	}
+
+	public boolean isPause() {
+		return pause;
+	}
+
+	public boolean isStop() {
+		return stop;
 	}
 }

@@ -5,62 +5,52 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import controllers.Controller;
 import models.Player;
+import models.User;
 
-public class MainWindow extends JFrame{
+public class MainWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private static final String TITLE = "Colombia Humana v1.0";
-	private static final String URL_ICON = "src/images/icon.jpg";
-
+	private Controller controller;
+	private JPanelGame panelGame;
+	
 	private JDialogInitPlayer jDialogInitPlayer;
 	
 	private JPanelInit jPanelInit;
-	private JPanelHistory jPanelHistory;
-	private JPanelGame jPanelGame; 
+	private JDialogLoading jDialogLoading;
 
 	public MainWindow(Controller controller) {
-		setTitle(TITLE);
+		this.controller = controller;
+		setTitle("Colombia Humana v1.0");
 		setLayout(new BorderLayout());
-		getContentPane().setBackground(Color.WHITE);
-		setExtendedState(MAXIMIZED_BOTH);
+		setIconImage(new ImageIcon(getClass().getResource("/images/icon.jpg")).getImage());
+		setSize(1000, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setIconImage(new ImageIcon(URL_ICON).getImage());
-		addKeyListener(controller);
-
+		setLocationRelativeTo(null);
+//		setResizable(false);
+		
 		jDialogInitPlayer = new JDialogInitPlayer(this, controller);
-		jPanelInit = new JPanelInit(controller);
-		jPanelHistory = new JPanelHistory(controller);
+		jDialogLoading = new JDialogLoading();
 		
 		setVisible(true);
 	}
-
+	
 	public void showPanelInit() {
+		jPanelInit = new JPanelInit(controller);
 		add(jPanelInit, BorderLayout.CENTER);
+		getContentPane().repaint();		
+		getContentPane().revalidate();
 	}
 
 	public void showDialogInitPlayer() {
 		jDialogInitPlayer.setVisible(true);
 	}
-
-	public void showPanelHistory(Controller controller) {
-		getContentPane().removeAll();
-		add(jPanelHistory, BorderLayout.CENTER);
-		getContentPane().repaint();		
-		getContentPane().revalidate();
-	}
-
-	public void showPanelGame(Controller controller, Player player,ArrayList<Player> list) {
-		getContentPane().removeAll();
-		jPanelGame = new JPanelGame(player,list);
-		add(jPanelGame, BorderLayout.CENTER);
-		getContentPane().repaint();		
-		getContentPane().revalidate();
-	}
-
+	
 	public void ocultDialogInitPlayer() {
 		jDialogInitPlayer.setVisible(false);
 	}
@@ -69,16 +59,22 @@ public class MainWindow extends JFrame{
 		return jDialogInitPlayer.getNamePlayer();
 	}
 
-	public String getCharacterPlayer() {
-		return jDialogInitPlayer.getCharacterPlayer();
+	public void init(Player player, ArrayList<User> users) {
+		jDialogLoading.setVisible(false);
+//		getContentPane().removeAll();
+		panelGame = new JPanelGame(controller, player.getArea(), users);
+		add(panelGame, BorderLayout.CENTER);
+		getContentPane().repaint();		 
+		getContentPane().revalidate();
+		setVisible(true);
 	}
-
-	public JPanelGame getjPanelGame() {
-		return jPanelGame;
+	
+	public void showDialogLoading() {
+		jDialogLoading.setVisible(true);
 	}
-
-//	public void setGame(Player player,  ArrayList<Player> list) {
-//		jPanelGame.setCoordinates(player, list);
-//		jPanelGame.repaint();
-//	}
+	
+	public void paintGame() {
+		panelGame.repaint();
+		revalidate();
+	}
 }

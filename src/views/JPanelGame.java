@@ -1,53 +1,67 @@
 package views;
 
-import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import models.Player;
+import models.Area;
+import models.User;
+import view.UtilityList;
 
-public class JPanelGame extends JPanel{
+public class JPanelGame extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static final Image PLAYER_IMAGE = new ImageIcon("src/images/marranin.png").getImage();
-	private static final Image IMAGE = new ImageIcon("src/images/lord.png").getImage();
-	private Player player;
+	private ImageIcon imagePlayer;
+	private ArrayList<User> users;
+	private Area area;
 
-	private ArrayList<Player> list;
-
-
-	public JPanelGame(Player player,ArrayList<Player> list) {
-//		player = new Player();
-		this.player = player;
-		this.list = list;
-		setBackground(Color.GRAY);
+	public JPanelGame(KeyListener keyListener, Area area, ArrayList<User> users) {
+		this.area = area;
+		this.users = users;
+		addKeyListener(keyListener);
+		setFocusable(true);
+		ImageIcon image = new ImageIcon(getClass().getResource("/images/marranin.png"));
+		imagePlayer = UtilityList.scaledImage(image, 250, 250);
 		repaint();
 	}
 
+//	@Override
+//	public void paint(Graphics g) {
+//		super.paint(g);
+//		g.setFont(new Font("Agency FB", Font.BOLD, 35));
+//		g.drawImage(imagePlayer.getImage(), area.getX(), area.getY(), 100, 100, this);
+//		for (User user : users) {
+//			g.drawImage(imagePlayer.getImage(), user.getPositionX(), user.getPositionY(), 100, 100 , this);
+//			g.drawString(user.getName(), user.getPositionX() + 50, user.getPositionY());
+//		}
+//	}
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		if (player != null) {
-			g.drawImage(PLAYER_IMAGE, player.getPositionInX(), player.getPositionInY(), 200, 200, this);
-			g.drawString(player.getNamePlayer(), player.getPositionInX()+30, player.getPositionInY());
-			
-			g.drawImage(IMAGE, 1500, 0, 200, 200, this);
-			g.fillRect(1500, 200, 500, 900);
-			
-			g.drawString("Porqui", 30, 30);
-			for (Player player : list) {
-				g.drawString(player.getNamePlayer(), player.getPositionInX()+30, player.getPositionInY());
-				g.drawImage(PLAYER_IMAGE, player.getPositionInX(), player.getPositionInY(), 200, 200, this);
-			}
+		g.setFont(new Font("Agency FB", Font.BOLD, 25));
+		g.drawImage(new ImageIcon("src/images/lord.png").getImage(), this.getWidth()- 200, this.getHeight()- 650, 150, 150, this);
+		
+		g.drawString("Duque", this.getWidth()- 950, this.getHeight() - 620);
+		g.fillRect(this.getWidth()- 900, this.getHeight() - 640, 200, 20);
+		
+		g.drawString("Petro", this.getWidth()- 950, this.getHeight() - 590);
+		g.fillRect(this.getWidth()- 900, this.getHeight() - 610, 200, 20);
+		
+		g.fillRect(this.getWidth()- 200, this.getHeight() - 500, 200, 500);
+		
+		
+//		g.drawImage(new ImageIcon("src/images/marranin.png").getImage(), this.getWidth()- 800, this.getHeight()- 150, 150, 150, this);
+		g.drawString("Jugador", area.getX() + 20, this.getHeight() - 150);
+		g.drawImage(new ImageIcon("src/images/marranin.png").getImage(),  area.getX(), this.getHeight() - 150, 150, 150, this);
+//		g.drawImage(imagePlayer.getImage(), area.getX(), area.getY(), 100, 100, this);
+		for (User user : users) {
+			g.drawImage(imagePlayer.getImage(), user.getPositionX(), this.getHeight() - 150, 150, 150 , this);
+//			g.drawString(user.getName(), user.getPositionX() + 50, user.getPositionY());
 		}
 	}
-
-//	public void setCoordinates(Player player, ArrayList<Player> players ) {
-//		this.player = player;
-//		list = players;
-//	}
 }
