@@ -10,6 +10,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+import models.Enemy;
 import models.User;
 
 public class FileManager {
@@ -35,5 +36,26 @@ public class FileManager {
 	        System.err.println(jdomex.getMessage());
 	    }
 		return users;
+	}
+	
+	public static ArrayList<String> readEnemy(File file) {
+		ArrayList<String> informationEnemy = new ArrayList<>();
+		SAXBuilder builder = new SAXBuilder();
+	    try {
+	        Document document = (Document) builder.build(file);
+	        Element rootNode = (Element) ((org.jdom2.Document) document).getRootElement();
+	        List<Element> enemyFileList = ((org.jdom2.Element) rootNode).getChildren("Player");
+	        for (Element element : enemyFileList) {
+	        	int x = Integer.parseInt(element.getChildTextTrim("X"));
+	        	int y = Integer.parseInt(element.getChildTextTrim("Y"));
+				informationEnemy.add(String.valueOf(x));
+				informationEnemy.add(String.valueOf(y));
+			}
+	    }catch (IOException io) {
+	        System.err.println(io.getMessage());
+	    }catch (JDOMException jdomex) {
+	        System.err.println(jdomex.getMessage());
+	    }
+	    return informationEnemy;
 	}
 }

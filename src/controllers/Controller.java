@@ -28,24 +28,9 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 
 	public Controller() {
 		mainWindow = new MainWindow(this);
-		
-		
+		initWindow = new GameMainWindow(this);
 		mainWindow.showPanelInit();
-//		connectPlayer();
 	}
-	
-
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		switch (Events.valueOf(e.getActionCommand())) {
-//		case LOG_ING:
-//			break;
-//		case SIGN_IN:
-//			break;
-//			
-//			
-//		}
-//	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e){
@@ -54,18 +39,8 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 			mainWindow.showDialogInitPlayer();
 			break;
 		case ADD_PLAYER:
-//			newPlayer("0", 2000);
 		connectPlayer();
 			break;
-//		case ADD_PLAYER:
-//			newPlayer();
-//			mainWindow.setVisible(false);
-////			mainWindow.showDialogLoading();
-//			mainWindow.removeAll();
-//			break;
-//		case INIT_GAME:
-////			mainWindow.removeAll();
-//			break;
 		default:
 			break;
 		}
@@ -76,7 +51,6 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				mainWindow.paintGame();
 				initWindow.paintGame();
 			}
 		});
@@ -84,11 +58,6 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 	}
 
 	private void connectPlayer() {
-//		mainWindow.setVisible(false);
-//		mainWindow.showPanelInit();
-		
-//		String ip = JOptionPane.showInputDialog("Ingrese la IP del servidor", "0");
-//		String port = JOptionPane.showInputDialog("Ingrese el puerto", "2000");
 		String ip = "0";
 		String port = "2000";
 		if (!port.equals("")) {
@@ -96,20 +65,14 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 		} else {
 			JOptionPane.showMessageDialog(null, "Puerto invalido", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
-//		newPlayer();
 	}
 
 	private void newPlayer(String ip, int port) {
-//		private void newPlayer() {
 		try {
-//			String name = JOptionPane.showInputDialog("Nombre de usuario");
 			String name = mainWindow.getNamePlayer();
-			
 			mainWindow.ocultDialogInitPlayer();
-//			mainWindow.removeAll();
 			mainWindow.setVisible(false);
 			mainWindow.showDialogLoading();
-//						mainWindow.showDialog();
 			managerGame = new Manager(name, mainWindow.getWidth(), mainWindow.getHeight());
 			client = new Client(ip, port, managerGame.getPlayer());
 			client.addObserver(this);
@@ -119,10 +82,6 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 	}
 
 	private void movePlayer(int keycode) {
-		//		if (keycode == KeyEvent.VK_UP) {
-		//			managerGame.move(Direction.UP);
-		//		} else if (keycode == KeyEvent.VK_DOWN) {
-		//			managerGame.move(Direction.DOWN);
 		if (keycode == KeyEvent.VK_RIGHT) {
 			managerGame.move(Direction.RIGHT);
 		} else if (keycode == KeyEvent.VK_LEFT) {
@@ -131,6 +90,10 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 //			client.createShoot(managerGame.getPlayer().getArea().getX(), managerGame.getPlayer().getArea().getY());
 		}
 		client.sendMove(managerGame.getPlayer().getArea().getX(), managerGame.getPlayer().getArea().getY());
+	}
+	
+	public int getSizeWindowInX() {
+		return initWindow.getSizeWindowInX();
 	}
 
 	@Override
@@ -151,8 +114,8 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 	public void startGame() {
 //		mainWindow.init(managerGame.getPlayer(), managerGame.getUsers());
 		mainWindow.ocultDialogLoading();
-		initWindow = new GameMainWindow(this);
-		initWindow.init(managerGame.getPlayer(), managerGame.getUsers());
+//		initWindow = new GameMainWindow(this);
+		initWindow.init(managerGame.getPlayer(), managerGame.getUsers(), client.getEnemy());
 		startTimer();
 	}
 

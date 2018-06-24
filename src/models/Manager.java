@@ -6,18 +6,20 @@ public class Manager {
 
 	private Player player;
 	private ArrayList<User> users;
+//	private Enemy enemy;
 
 	public Manager(String name, int width, int height) {
 		this.player = new Player(name, new Area((int) (Math.random() * (width - 250)),
 				(int) (height - 40), width, height));
 		users = new ArrayList<>();
+//		enemy = new Enemy();
 	}
 	
 	public void move(Direction direction) {
 		player.move(direction);
 	}
 	
-	public void loadUsers(ArrayList<User> players) {
+	public void loadUsers(ArrayList<User> players) { 
 		if (users.isEmpty()) {
 			for (User user : players) {
 				users.add(user);
@@ -46,4 +48,8 @@ public class Manager {
 	public ArrayList<User> getUsers() {
 		return users;
 	}
+
+//	public Enemy getEnemy() {
+//		return enemy;
+//	}
 }

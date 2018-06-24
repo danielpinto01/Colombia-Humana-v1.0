@@ -2,5 +2,5 @@ package connections;
 
 public enum Request {
 
-	MOVE_PLAYER, CREATE_SHOOT, LOG_IN, SIGN_IN;
+	MOVE_PLAYER, CREATE_SHOOT, LOG_IN, SIGN_IN,
 }

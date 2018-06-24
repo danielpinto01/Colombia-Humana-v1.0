@@ -9,6 +9,7 @@ import java.net.Socket;
 
 import controllers.IObservable;
 import controllers.IObserver;
+import models.Enemy;
 import models.MyThread;
 import models.Player;
 import persistence.FileManager;
@@ -20,7 +21,8 @@ public class Client extends MyThread implements IObservable{
 	private DataInputStream input;
 	private IObserver iObserver;
 	
-
+	private Enemy enemy;
+	
 	public Client(String ip, int port, Player player) throws IOException {
 		super("", 20);
 		socket = new Socket(ip, port);
@@ -28,6 +30,7 @@ public class Client extends MyThread implements IObservable{
 		output = new DataOutputStream(socket.getOutputStream());
 		input = new DataInputStream(socket.getInputStream());
 		createPlayer(player);
+		enemy = new Enemy();
 		start();
 	}
 
@@ -45,6 +48,9 @@ public class Client extends MyThread implements IObservable{
 		case PLAYERS_INFO:
 			getUsersInfo();
 			break;
+//		case SEND_ENEMY:
+//			getEnemyInfo();
+//			break;
 		case START_GAME:
 			iObserver.startGame();
 			break;
@@ -55,6 +61,13 @@ public class Client extends MyThread implements IObservable{
 		File file = new File(input.readUTF());
 		readFile(file);
 		iObserver.loadUsers(FileManager.readUsers(file));
+		
+		int x = input.readInt();
+		int y = input.readInt();
+		System.out.println(x + "/" + y);
+		enemy.setPositionInX(x);
+		enemy.setPositionInY(y);
+		
 		file.delete();
 	}
 	
@@ -75,7 +88,7 @@ public class Client extends MyThread implements IObservable{
 			System.err.println(e.getMessage());
 		}
 	}
-
+	
 	@Override
 	public void execute() {
 		String response;
@@ -104,4 +117,10 @@ public class Client extends MyThread implements IObservable{
 			System.err.println(e.getMessage());
 		}
 	}
+
+	public Enemy getEnemy() {
+		return enemy;
+	}
+	
+	
 }
