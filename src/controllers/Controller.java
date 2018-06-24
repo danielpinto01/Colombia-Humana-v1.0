@@ -14,6 +14,7 @@ import connections.Client;
 import models.Direction;
 import models.Manager;
 import models.User;
+import views.GameMainWindow;
 import views.MainWindow;
 
 public class Controller implements ActionListener, KeyListener, IObserver {
@@ -22,9 +23,13 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 	private Manager managerGame;
 	private MainWindow mainWindow;
 	private Timer timer;
+	
+	private GameMainWindow initWindow;
 
 	public Controller() {
 		mainWindow = new MainWindow(this);
+		
+		
 		mainWindow.showPanelInit();
 //		connectPlayer();
 	}
@@ -49,14 +54,18 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 			mainWindow.showDialogInitPlayer();
 			break;
 		case ADD_PLAYER:
-			newPlayer();
-			mainWindow.setVisible(false);
-//			mainWindow.showDialogLoading();
-			mainWindow.removeAll();
+//			newPlayer("0", 2000);
+		connectPlayer();
 			break;
-		case INIT_GAME:
+//		case ADD_PLAYER:
+//			newPlayer();
+//			mainWindow.setVisible(false);
+////			mainWindow.showDialogLoading();
 //			mainWindow.removeAll();
-			break;
+//			break;
+//		case INIT_GAME:
+////			mainWindow.removeAll();
+//			break;
 		default:
 			break;
 		}
@@ -67,7 +76,8 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainWindow.paintGame();
+//				mainWindow.paintGame();
+				initWindow.paintGame();
 			}
 		});
 		timer.start();
@@ -75,25 +85,33 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 
 	private void connectPlayer() {
 //		mainWindow.setVisible(false);
+//		mainWindow.showPanelInit();
+		
 //		String ip = JOptionPane.showInputDialog("Ingrese la IP del servidor", "0");
 //		String port = JOptionPane.showInputDialog("Ingrese el puerto", "2000");
-//		if (!port.equals("")) {
-//			newPlayer(ip, Integer.parseInt(port));
-//		} else {
-//			JOptionPane.showMessageDialog(null, "Puerto invalido", "ERROR", JOptionPane.ERROR_MESSAGE);
-//		}
-		newPlayer();
+		String ip = "0";
+		String port = "2000";
+		if (!port.equals("")) {
+			newPlayer(ip, Integer.parseInt(port));
+		} else {
+			JOptionPane.showMessageDialog(null, "Puerto invalido", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+//		newPlayer();
 	}
 
-//	private void newPlayer(String ip, int port) {
-		private void newPlayer() {
+	private void newPlayer(String ip, int port) {
+//		private void newPlayer() {
 		try {
 //			String name = JOptionPane.showInputDialog("Nombre de usuario");
-			//			mainWindow.showDialog();
-			managerGame = new Manager(mainWindow.getNamePlayer(), mainWindow.getWidth(), mainWindow.getHeight());
+			String name = mainWindow.getNamePlayer();
+			
 			mainWindow.ocultDialogInitPlayer();
+//			mainWindow.removeAll();
+			mainWindow.setVisible(false);
 			mainWindow.showDialogLoading();
-			client = new Client("0", 2000, managerGame.getPlayer());
+//						mainWindow.showDialog();
+			managerGame = new Manager(name, mainWindow.getWidth(), mainWindow.getHeight());
+			client = new Client(ip, port, managerGame.getPlayer());
 			client.addObserver(this);
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "No se pudo conectar con el servidor", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -131,7 +149,10 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 
 	@Override
 	public void startGame() {
-		mainWindow.init(managerGame.getPlayer(), managerGame.getUsers());
+//		mainWindow.init(managerGame.getPlayer(), managerGame.getUsers());
+		mainWindow.ocultDialogLoading();
+		initWindow = new GameMainWindow(this);
+		initWindow.init(managerGame.getPlayer(), managerGame.getUsers());
 		startTimer();
 	}
 

@@ -1,23 +1,17 @@
 package views;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import controllers.Controller;
-import models.Player;
-import models.User;
 
 public class MainWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private Controller controller;
-	private JPanelGame panelGame;
+	
 	
 	private JDialogInitPlayer jDialogInitPlayer;
 	
@@ -37,7 +31,6 @@ public class MainWindow extends JFrame {
 		jDialogInitPlayer = new JDialogInitPlayer(this, controller);
 		jDialogLoading = new JDialogLoading();
 		
-		setVisible(true);
 	}
 	
 	public void showPanelInit() {
@@ -45,6 +38,7 @@ public class MainWindow extends JFrame {
 		add(jPanelInit, BorderLayout.CENTER);
 		getContentPane().repaint();		
 		getContentPane().revalidate();
+		setVisible(true);
 	}
 
 	public void showDialogInitPlayer() {
@@ -59,22 +53,26 @@ public class MainWindow extends JFrame {
 		return jDialogInitPlayer.getNamePlayer();
 	}
 
-	public void init(Player player, ArrayList<User> users) {
-		jDialogLoading.setVisible(false);
+//	public void init(Player player, ArrayList<User> users) {
+//		jDialogLoading.setVisible(false);
 //		getContentPane().removeAll();
-		panelGame = new JPanelGame(controller, player.getArea(), users);
-		add(panelGame, BorderLayout.CENTER);
-		getContentPane().repaint();		 
-		getContentPane().revalidate();
-		setVisible(true);
-	}
+//		panelGame = new JPanelGame(controller, player.getArea(), users);
+//		add(panelGame, BorderLayout.CENTER);
+//		getContentPane().repaint();		 
+//		getContentPane().revalidate();
+//		setVisible(true);
+//	}
 	
 	public void showDialogLoading() {
 		jDialogLoading.setVisible(true);
 	}
 	
-	public void paintGame() {
-		panelGame.repaint();
-		revalidate();
+	public void ocultDialogLoading() {
+		jDialogLoading.setVisible(false);
 	}
+	
+//	public void paintGame() {
+//		panelGame.repaint();
+//		revalidate();
+//	}
 }
