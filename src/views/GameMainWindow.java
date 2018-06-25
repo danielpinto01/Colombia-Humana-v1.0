@@ -10,7 +10,6 @@ import controllers.Controller;
 import models.Bees;
 import models.Enemy;
 import models.Player;
-import models.Shot;
 import models.User;
 
 public class GameMainWindow extends JFrame{
@@ -28,6 +27,7 @@ public class GameMainWindow extends JFrame{
 		setSize(1000, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setResizable(false);
 	}
 	
 	public void init(Player player, ArrayList<User> users, Enemy enemy, ArrayList<Bees> bees) {
@@ -47,7 +47,4 @@ public class GameMainWindow extends JFrame{
 	public int getSizeWindowInX() {
 		return panelGame.getSizeWindowInX();
 	}
-	
-	
-
 }

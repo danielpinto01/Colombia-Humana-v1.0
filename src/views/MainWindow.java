@@ -27,7 +27,7 @@ public class MainWindow extends JFrame {
 		setSize(1000, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-//		setResizable(false);
+		setResizable(false);
 		
 		jDialogInformationInit = new JDialogInformationInit(controller, this);
 		jDialogInitPlayer = new JDialogInitPlayer(this, controller);
@@ -55,16 +55,6 @@ public class MainWindow extends JFrame {
 		return jDialogInitPlayer.getNamePlayer();
 	}
 
-//	public void init(Player player, ArrayList<User> users) {
-//		jDialogLoading.setVisible(false);
-//		getContentPane().removeAll();
-//		panelGame = new JPanelGame(controller, player.getArea(), users);
-//		add(panelGame, BorderLayout.CENTER);
-//		getContentPane().repaint();		 
-//		getContentPane().revalidate();
-//		setVisible(true);
-//	}
-	
 	public void showDialogLoading() {
 		jDialogLoading.setVisible(true);
 	}
@@ -88,9 +78,4 @@ public class MainWindow extends JFrame {
 	public int getPort() {
 		return jDialogInformationInit.getPort();
 	}
-	
-//	public void paintGame() {
-//		panelGame.repaint();
-//		revalidate();
-//	}
 }

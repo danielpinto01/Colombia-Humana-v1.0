@@ -7,6 +7,7 @@ public class Enemy {
 	private int positionInX;
 	private int positionInY;
 	
+	@SuppressWarnings("unused")
 	private ArrayList<Shot> shots;
 	
 	public Enemy() {
@@ -30,8 +31,6 @@ public class Enemy {
 		this.positionInY = positionInY;
 	}
 	
-	
-
 	@Override
 	public String toString() {
 		return "Enemy [positionInX=" + positionInX + ", positionInY=" + positionInY + "]";

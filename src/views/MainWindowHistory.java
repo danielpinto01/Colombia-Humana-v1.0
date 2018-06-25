@@ -16,6 +16,7 @@ import controllers.Events;
 public class MainWindowHistory extends JFrame{
 
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private Controller controller;
 	
 	private JPanel JPanelHistory;
@@ -25,6 +26,7 @@ public class MainWindowHistory extends JFrame{
 	private ImageIcon imgIconNext;
 	private JButton btnImageIconNext;
 	
+	private ImageIcon image;
 	public MainWindowHistory(Controller controller) {
 		this.controller = controller;
 		setTitle("Colombia Humana v1.0");
@@ -33,10 +35,10 @@ public class MainWindowHistory extends JFrame{
 		setSize(1000, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-//		setResizable(false);
-		setBackground(Color.RED);
+		setBackground(Color.WHITE);
+		setResizable(false);
 		
-		lbHistory = new JLabel("Historia :v");
+
 		
 		imgIconNext = new ImageIcon("src/images/next.png");
 		btnImageIconNext = new JButton(imgIconNext);
@@ -48,6 +50,10 @@ public class MainWindowHistory extends JFrame{
 		pnlNext = new JPanel();
 		pnlNext.setBackground(Color.WHITE);
 		pnlNext.add(btnImageIconNext);
+		
+		image = new ImageIcon("src/images/history.png");
+		lbHistory = new JLabel(image);
+		lbHistory.setBackground(Color.WHITE);
 		
 		JPanelHistory = new JPanel();
 		JPanelHistory.setLayout(new BorderLayout());

@@ -14,7 +14,7 @@ public class JDialogLoading extends JDialog{
 	
 	public JDialogLoading() {
 		setBackground(Color.WHITE);
-		setTitle("Loading...");
+		setTitle("Cargando...");
 		setSize(500, 400);
 		setUndecorated(true);
 		setLocationRelativeTo(null);

@@ -11,8 +11,6 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import models.Bees;
-import models.Enemy;
-import models.Shot;
 import models.User;
 
 public class FileManager {

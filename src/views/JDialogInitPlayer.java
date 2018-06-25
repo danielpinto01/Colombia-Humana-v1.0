@@ -2,7 +2,6 @@ package views;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 

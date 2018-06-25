@@ -16,7 +16,6 @@ import controllers.Events;
 
 public class JDialogInformationInit extends JDialog{
 
-
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel lbIp;
@@ -33,7 +32,7 @@ public class JDialogInformationInit extends JDialog{
 		setSize(320, 200);
 		setLocationRelativeTo(null);
 		
-		lbIp = new JLabel("Enter the ip:");
+		lbIp = new JLabel("Ingrese direccion IP: ");
 		lbIp.setBackground(Color.GRAY);
 		lbIp.setHorizontalAlignment(SwingConstants.CENTER);
 		lbIp.setFont(new Font("Century Gothic", 0, 18));
@@ -44,7 +43,7 @@ public class JDialogInformationInit extends JDialog{
 		txtIp.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5)); 
 		add(txtIp);
 		
-		lbPort = new JLabel("Enter the port:");
+		lbPort = new JLabel("Ingrese el puerto: ");
 		lbPort.setBackground(Color.GRAY);
 		lbPort.setHorizontalAlignment(SwingConstants.CENTER);
 		lbPort.setFont(new Font("Century Gothic", 0, 18));
@@ -55,7 +54,7 @@ public class JDialogInformationInit extends JDialog{
 		txtPort.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5)); 
 		add(txtPort);
 		
-		btnInit = new JButton("Init");
+		btnInit = new JButton("Iniciar");
 		btnInit.setBackground(Color.GRAY);
 		btnInit.setForeground(Color.WHITE);
 		btnInit.setFont(new Font("Century Gothic", 0, 18));

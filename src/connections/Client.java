@@ -48,17 +48,12 @@ public class Client extends MyThread implements IObservable{
 		output.writeInt(player.getArea().getHeight());
 	}
 
+	@SuppressWarnings("incomplete-switch")
 	private void responseManager(String response) throws IOException {
 		switch (Response.valueOf(response)) {
 		case PLAYERS_INFO:
 			getUsersInfo();
 			break;
-//		case SEND_ENEMY:
-//			getEnemyInfo();
-//			break;
-//		case SEND_LIST_SHOT:
-//			receiveListShot();
-//			break;
 		case SEND_BEES:
 			getBeesFile();
 			break;
@@ -69,7 +64,6 @@ public class Client extends MyThread implements IObservable{
 	}
 	
 	public ArrayList<Shot> getShots() {
-//		System.out.println(shots);
 		return shots;
 	}
 
@@ -77,15 +71,8 @@ public class Client extends MyThread implements IObservable{
 		File file = new File(input.readUTF());
 		readFile(file);
 		iObserver.loadUsers(FileManager.readUsers(file));
-		
 		int x = input.readInt();
-//		System.out.println(x + "/");
 		enemy.setPositionInX(x);
-		
-//		File file2 = new File(input.readUTF());
-//		readFile(file2);
-//		shots = FileManager.readShots(file2);
-		
 		file.delete();
 	}
 	
@@ -113,17 +100,7 @@ public class Client extends MyThread implements IObservable{
 			System.err.println(e.getMessage());
 		}
 	}
-	
-//	public void receiveListShot() {
-//		File file;
-//		try {
-//			file = new File(input.readUTF());
-//			readFile(file);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
+
 	@Override
 	public void execute() {
 		String response;
@@ -156,6 +133,4 @@ public class Client extends MyThread implements IObservable{
 	public Enemy getEnemy() {
 		return enemy;
 	}
-	
-	
 }

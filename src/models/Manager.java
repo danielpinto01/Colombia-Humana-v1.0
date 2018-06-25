@@ -86,10 +86,4 @@ public class Manager {
 	public ArrayList<Bees> getBees() {
 		return bees;
 	}
-	
-	
-
-	//	public Enemy getEnemy() {
-	//		return enemy;
-	//	}
 }

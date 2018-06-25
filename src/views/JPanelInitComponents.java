@@ -68,14 +68,14 @@ public class JPanelInitComponents extends JPanel{
 		btnInitGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
 		btnInitGame.addActionListener(controller);
 		btnInitGame.setActionCommand(Events.INIT_GAME.toString());
-		add(btnInitGame, c);
+//		add(btnInitGame, c);
 		
 		c.gridy = 3; //Inicia en Y
 		c.weighty = 1;//Alto
 		c.gridx = 3; //Inicia en X
 		c.gridwidth= 1; //Ancho
 		c.insets = new Insets(20, 0, 0, 0);
-		btnCheckIn = new JButton("Init Game");
+		btnCheckIn = new JButton("Iniciar juego");
 		btnCheckIn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnCheckIn.setBackground(Color.decode("#f5cb18"));
 		btnCheckIn.setForeground(Color.WHITE);

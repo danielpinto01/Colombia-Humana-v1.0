@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import models.Area;
 import models.Bees;
 import models.Enemy;
-import models.Shot;
 import models.User;
 import view.UtilityList;
 
@@ -21,6 +20,8 @@ public class JPanelGame extends JPanel {
 	private static final Image IMAGE_MARRANIN = new ImageIcon("src/images/marranin.png").getImage();
 	private static final Image IMAGE_LORD = new ImageIcon("src/images/lord.png").getImage();
 	private static final Image IMAGE_BEES = new ImageIcon("src/images/abeja.png").getImage();
+	private static final Image IMAGE_MON = new ImageIcon("src/images/mon.png").getImage();
+	private static final Image IMAGE_FON = new ImageIcon("src/images/fon2.jpg").getImage();
 	private static final long serialVersionUID = 1L;
 	private ImageIcon imagePlayer;
 	private ArrayList<User> users;
@@ -45,21 +46,26 @@ public class JPanelGame extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.setFont(new Font("Agency FB", Font.BOLD, 25));
+		g.setFont(new Font("Century Gothic", 1,16));
 		
-		g.fillRect(this.getWidth()- 200, this.getHeight() - 480, 200, 500);
+		g.drawImage(IMAGE_FON, 0, 0, this.getWidth(), this.getHeight() , this);
+		g.drawImage(IMAGE_MON, this.getWidth()- 200, this.getHeight() - 480, 200, 500 , this);
 		
+		
+		g.drawString("Duque", this.getWidth()- 950, this.getHeight() - 620);
+		g.fillRect(this.getWidth()- 900, this.getHeight() - 640, 200, 20);
+		
+		g.drawString("Petro", this.getWidth()- 950, this.getHeight() - 590);
+		g.fillRect(this.getWidth()- 900, this.getHeight() - 610, 200, 20);
 		
 		if (enemy.getPositionInX() >0 && enemy.getPositionInX() < 1000 && enemy != null) {
 			g.drawImage(IMAGE_LORD, enemy.getPositionInX(), enemy.getPositionInY(), 150, 150, this);
 		}
 		
-		
-		
-		g.drawString("Jugador", area.getX() + 20, this.getHeight() - 150);
 		g.drawImage(IMAGE_MARRANIN,  area.getX(), this.getHeight() - 150, 150, 150, this);
 		for (User user : users) {
 			g.drawImage(imagePlayer.getImage(), user.getPositionX(), this.getHeight() - 150, 150, 150 , this);
+			g.drawString(user.getName(), area.getX() + 20, this.getHeight() - 150);
 		}
 		
 		for (int i = 0; i < bees.size(); i++) {
@@ -71,6 +77,7 @@ public class JPanelGame extends JPanel {
 				g.drawImage(IMAGE_BEES, bees.get(i).getX(), bees.get(i).getY(), 50, 50,  this);
 			}
 		}
+		
 		
 	}
 	

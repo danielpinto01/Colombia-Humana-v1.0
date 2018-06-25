@@ -32,12 +32,6 @@ public class Area {
 	
 	public void move(Direction direction) {
 		switch (Direction.valueOf(direction.name())) {
-//		case UP:
-//			positionInY -= 10;
-//			break;
-//		case DOWN:
-//			positionInY += 10;
-//			break;
 		case LEFT:
 			positionInX -= 10;
 			break;
