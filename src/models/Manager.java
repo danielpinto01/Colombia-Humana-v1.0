@@ -6,19 +6,20 @@ public class Manager {
 
 	private Player player;
 	private ArrayList<User> users;
-//	private Enemy enemy;
+
+	private ArrayList<Bees> bees;
 
 	public Manager(String name, int width, int height) {
 		this.player = new Player(name, new Area((int) (Math.random() * (width - 250)),
 				(int) (height - 40), width, height));
 		users = new ArrayList<>();
-//		enemy = new Enemy();
+		bees = new ArrayList<>();
 	}
-	
+
 	public void move(Direction direction) {
 		player.move(direction);
 	}
-	
+
 	public void loadUsers(ArrayList<User> players) { 
 		if (users.isEmpty()) {
 			for (User user : players) {
@@ -29,6 +30,39 @@ public class Manager {
 				setInfo(user);
 			}
 		}
+	}
+
+	public void loadBees(ArrayList<Bees> beesList) {
+		for (int i = 0; i < beesList.size(); i++) {
+			if (!setBeesPositions(beesList.get(i))) {
+				bees.add(beesList.get(i));
+			}
+		}
+		for (int i = 0; i < bees.size(); i++) {
+			if (!validateBeesExist(bees.get(i), beesList)) {
+				bees.remove(i);
+			}
+		}
+	}
+
+	private boolean validateBeesExist(Bees bees, ArrayList<Bees> beesList) {
+		for (Bees bees1 : beesList) {
+			if (bees1.getId() == bees.getId()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean setBeesPositions(Bees bees1) {
+		for (Bees actual : bees) {
+			if (actual.getId() == bees1.getId()) {
+				actual.setX(bees1.getX());
+				actual.setY(bees1.getY());
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void setInfo(User player) {
@@ -49,7 +83,13 @@ public class Manager {
 		return users;
 	}
 
-//	public Enemy getEnemy() {
-//		return enemy;
-//	}
+	public ArrayList<Bees> getBees() {
+		return bees;
+	}
+	
+	
+
+	//	public Enemy getEnemy() {
+	//		return enemy;
+	//	}
 }

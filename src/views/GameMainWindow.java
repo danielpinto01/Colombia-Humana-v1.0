@@ -7,8 +7,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import controllers.Controller;
+import models.Bees;
 import models.Enemy;
 import models.Player;
+import models.Shot;
 import models.User;
 
 public class GameMainWindow extends JFrame{
@@ -28,9 +30,9 @@ public class GameMainWindow extends JFrame{
 		setLocationRelativeTo(null);
 	}
 	
-	public void init(Player player, ArrayList<User> users, Enemy enemy) {
+	public void init(Player player, ArrayList<User> users, Enemy enemy, ArrayList<Bees> bees) {
 		getContentPane().removeAll();
-		panelGame = new JPanelGame(controller, player.getArea(), users, enemy);
+		panelGame = new JPanelGame(controller, player.getArea(), users, enemy, bees);
 		add(panelGame, BorderLayout.CENTER);
 		getContentPane().repaint();		 
 		getContentPane().revalidate();

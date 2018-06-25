@@ -1,17 +1,13 @@
 package models;
 
-import java.util.ArrayList;
-
-public class Enemy {
+public class Shot {
 	
 	private int positionInX;
 	private int positionInY;
 	
-	private ArrayList<Shot> shots;
-	
-	public Enemy() {
-		positionInY = 20;
-		shots = new ArrayList<>();
+	public Shot(int positionInX, int positionInY) {
+		this.positionInX = positionInX;
+		this.positionInY = positionInY;
 	}
 
 	public int getPositionInX() {
@@ -29,11 +25,9 @@ public class Enemy {
 	public void setPositionInY(int positionInY) {
 		this.positionInY = positionInY;
 	}
-	
-	
 
 	@Override
 	public String toString() {
-		return "Enemy [positionInX=" + positionInX + ", positionInY=" + positionInY + "]";
+		return "Shot [positionInX=" + positionInX + ", positionInY=" + positionInY + "]";
 	}
 }

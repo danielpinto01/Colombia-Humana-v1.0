@@ -11,8 +11,10 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import connections.Client;
+import models.Bees;
 import models.Direction;
 import models.Manager;
+import models.Shot;
 import models.User;
 import views.GameMainWindow;
 import views.MainWindow;
@@ -115,7 +117,7 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 //		mainWindow.init(managerGame.getPlayer(), managerGame.getUsers());
 		mainWindow.ocultDialogLoading();
 //		initWindow = new GameMainWindow(this);
-		initWindow.init(managerGame.getPlayer(), managerGame.getUsers(), client.getEnemy());
+		initWindow.init(managerGame.getPlayer(), managerGame.getUsers(), client.getEnemy(), managerGame.getBees());
 		startTimer();
 	}
 
@@ -123,4 +125,10 @@ public class Controller implements ActionListener, KeyListener, IObserver {
 	public void loadUsers(ArrayList<User> users) {
 		managerGame.loadUsers(users);
 	}
+
+	@Override
+	public void loadBees(ArrayList<Bees> bees) {
+		managerGame.loadBees(bees);
+	}
+
 }

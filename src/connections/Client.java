@@ -6,12 +6,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import controllers.IObservable;
 import controllers.IObserver;
 import models.Enemy;
 import models.MyThread;
 import models.Player;
+import models.Shot;
 import persistence.FileManager;
 
 public class Client extends MyThread implements IObservable{
@@ -23,6 +25,8 @@ public class Client extends MyThread implements IObservable{
 	
 	private Enemy enemy;
 	
+	private ArrayList<Shot> shots;
+	
 	public Client(String ip, int port, Player player) throws IOException {
 		super("", 20);
 		socket = new Socket(ip, port);
@@ -31,6 +35,7 @@ public class Client extends MyThread implements IObservable{
 		input = new DataInputStream(socket.getInputStream());
 		createPlayer(player);
 		enemy = new Enemy();
+		shots = new ArrayList<>();
 		start();
 	}
 
@@ -51,10 +56,21 @@ public class Client extends MyThread implements IObservable{
 //		case SEND_ENEMY:
 //			getEnemyInfo();
 //			break;
+//		case SEND_LIST_SHOT:
+//			receiveListShot();
+//			break;
+		case SEND_BEES:
+			getBeesFile();
+			break;
 		case START_GAME:
 			iObserver.startGame();
 			break;
 		}
+	}
+	
+	public ArrayList<Shot> getShots() {
+//		System.out.println(shots);
+		return shots;
 	}
 
 	private void getUsersInfo() throws IOException {
@@ -63,12 +79,21 @@ public class Client extends MyThread implements IObservable{
 		iObserver.loadUsers(FileManager.readUsers(file));
 		
 		int x = input.readInt();
-		int y = input.readInt();
-		System.out.println(x + "/" + y);
+//		System.out.println(x + "/");
 		enemy.setPositionInX(x);
-		enemy.setPositionInY(y);
+		
+//		File file2 = new File(input.readUTF());
+//		readFile(file2);
+//		shots = FileManager.readShots(file2);
 		
 		file.delete();
+	}
+	
+	
+	private void getBeesFile() throws IOException {
+		File file = new File(input.readUTF());
+		readFile(file);
+		iObserver.loadBees(FileManager.readBees(file));
 	}
 	
 	private void readFile(File file) throws IOException {
@@ -88,6 +113,16 @@ public class Client extends MyThread implements IObservable{
 			System.err.println(e.getMessage());
 		}
 	}
+	
+//	public void receiveListShot() {
+//		File file;
+//		try {
+//			file = new File(input.readUTF());
+//			readFile(file);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	@Override
 	public void execute() {
