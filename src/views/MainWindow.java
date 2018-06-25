@@ -12,6 +12,7 @@ public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private Controller controller;
 	
+	private JDialogInformationInit jDialogInformationInit;
 	
 	private JDialogInitPlayer jDialogInitPlayer;
 	
@@ -28,6 +29,7 @@ public class MainWindow extends JFrame {
 		setLocationRelativeTo(null);
 //		setResizable(false);
 		
+		jDialogInformationInit = new JDialogInformationInit(controller, this);
 		jDialogInitPlayer = new JDialogInitPlayer(this, controller);
 		jDialogLoading = new JDialogLoading();
 		
@@ -69,6 +71,22 @@ public class MainWindow extends JFrame {
 	
 	public void ocultDialogLoading() {
 		jDialogLoading.setVisible(false);
+	}
+	
+	public void showDialogInformationInit() {
+		jDialogInformationInit.setVisible(true);
+	}
+	
+	public void ocultDialogInformationInit() {
+		jDialogInformationInit.setVisible(false);
+	}
+	
+	public String getIp() {
+		return jDialogInformationInit.getIp();
+	}
+	
+	public int getPort() {
+		return jDialogInformationInit.getPort();
 	}
 	
 //	public void paintGame() {

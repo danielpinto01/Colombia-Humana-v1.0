@@ -53,12 +53,29 @@ public class JPanelInitComponents extends JPanel{
 		lbImageIconMain = new JLabel(imgIconMain); 
 		add(lbImageIconMain, c);
 		
+		
 		c.gridy = 2; //Inicia en Y
 		c.weighty = 1;//Alto
 		c.gridx = 3; //Inicia en X
 		c.gridwidth= 1; //Ancho
+		c.insets = new Insets(10, 0, 0, 0);
+		btnInitGame = new JButton("Tienda");
+		btnInitGame.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnInitGame.setBackground(Color.decode("#89c037"));
+		btnInitGame.setForeground(Color.WHITE);
+		btnInitGame.setFont(new Font("Century Gothic", 0,16));
+		btnInitGame.setFocusable(false);
+		btnInitGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
+		btnInitGame.addActionListener(controller);
+		btnInitGame.setActionCommand(Events.INIT_GAME.toString());
+		add(btnInitGame, c);
+		
+		c.gridy = 3; //Inicia en Y
+		c.weighty = 1;//Alto
+		c.gridx = 3; //Inicia en X
+		c.gridwidth= 1; //Ancho
 		c.insets = new Insets(20, 0, 0, 0);
-		btnCheckIn = new JButton("Registrarse");
+		btnCheckIn = new JButton("Init Game");
 		btnCheckIn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnCheckIn.setBackground(Color.decode("#f5cb18"));
 		btnCheckIn.setForeground(Color.WHITE);
@@ -69,21 +86,6 @@ public class JPanelInitComponents extends JPanel{
 		btnCheckIn.setActionCommand(Events.SHOW_DIALOG_INIT_PLAYER.toString());
 		add(btnCheckIn, c);
 		
-		c.gridy = 3; //Inicia en Y
-		c.weighty = 1;//Alto
-		c.gridx = 3; //Inicia en X
-		c.gridwidth= 1; //Ancho
-		c.insets = new Insets(10, 0, 0, 0);
-		btnInitGame = new JButton("Iniciar");
-		btnInitGame.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnInitGame.setBackground(Color.decode("#89c037"));
-		btnInitGame.setForeground(Color.WHITE);
-		btnInitGame.setFont(new Font("Century Gothic", 0,16));
-		btnInitGame.setFocusable(false);
-		btnInitGame.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); 
-		btnInitGame.addActionListener(controller);
-		btnInitGame.setActionCommand(Events.INIT_GAME.toString());
-		add(btnInitGame, c);	
 		
 		c.gridy = 4; //Inicia en Y
 		c.weighty = 1;//Alto

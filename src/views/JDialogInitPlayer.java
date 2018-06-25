@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controllers.Controller;
 import controllers.Events;
@@ -16,24 +19,30 @@ import controllers.Events;
 public class JDialogInitPlayer extends JDialog{
 
 	private static final long serialVersionUID = 1L;
+	private JLabel lbInformation;
 	private JTextField txtNamePlayer;
 	private JButton btnAddPlayer;
 	
 	public JDialogInitPlayer(MainWindow mainWindow, Controller controller) {
 		super(mainWindow, true);
 		setTitle("Agregar Jugador");
-		setSize(400, 200);
+		setSize(320, 200);
 		getContentPane().setBackground(Color.WHITE);
-		setLayout(new FlowLayout());
+		setLayout(new GridLayout(3, 1));;
 		setLocationRelativeTo(null);
 		
 		init(controller);
 	}
 	
 	public void init(Controller controller) {
+		
+		lbInformation = new JLabel("Nombre:");
+		lbInformation.setFont(new Font("Century Gothic", 0,16));
+		lbInformation.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lbInformation);
+		
 		txtNamePlayer= new JTextField(12);
 		txtNamePlayer.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-		txtNamePlayer.setBorder(BorderFactory.createTitledBorder("Nombre:"));
 		txtNamePlayer.setBackground(Color.WHITE);
 		add(txtNamePlayer);
 		

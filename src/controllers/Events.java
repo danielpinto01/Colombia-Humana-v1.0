@@ -3,6 +3,8 @@ package controllers;
 import javax.swing.ImageIcon;
 
 public enum Events {
+	
+	INIT_APP("INIT_APP", "iniciar" , ""),
 
 	LOG_ING("LOG_ING", "Ingresar" , ""),
 	SIGN_IN("SIGN_IN", "Registrarse" , ""),
@@ -11,7 +13,8 @@ public enum Events {
 	EXIT_APP("EXIT_APP", "Salir de la App", ""), 
 	NEXT_PAGE("NEXT_PAGE", "Siguiente panel", ""), 
 	INIT_GAME("INIT_GAME", "Inicio del juego", ""),
-	ADD_PLAYER("ADD_PLAYER", "Agregar jugador", "");
+	ADD_PLAYER("ADD_PLAYER", "Agregar jugador", ""), 
+	EXIT_HISTORY("EXIT_HISTORY", "Salir de la historia", "");
 	
 	private String event;
 	private String title;
