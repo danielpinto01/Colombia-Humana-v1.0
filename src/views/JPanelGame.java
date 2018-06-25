@@ -20,7 +20,7 @@ public class JPanelGame extends JPanel {
 
 	private static final Image IMAGE_MARRANIN = new ImageIcon("src/images/marranin.png").getImage();
 	private static final Image IMAGE_LORD = new ImageIcon("src/images/lord.png").getImage();
-	private static final Image IMAGE_BEES = new ImageIcon("src/images/next.png").getImage();
+	private static final Image IMAGE_BEES = new ImageIcon("src/images/abeja.png").getImage();
 	private static final long serialVersionUID = 1L;
 	private ImageIcon imagePlayer;
 	private ArrayList<User> users;
@@ -47,6 +47,9 @@ public class JPanelGame extends JPanel {
 		super.paint(g);
 		g.setFont(new Font("Agency FB", Font.BOLD, 25));
 		
+		g.fillRect(this.getWidth()- 200, this.getHeight() - 480, 200, 500);
+		
+		
 		if (enemy.getPositionInX() >0 && enemy.getPositionInX() < 1000 && enemy != null) {
 			g.drawImage(IMAGE_LORD, enemy.getPositionInX(), enemy.getPositionInY(), 150, 150, this);
 		}
@@ -61,13 +64,14 @@ public class JPanelGame extends JPanel {
 		
 		for (int i = 0; i < bees.size(); i++) {
 			if (bees.get(i).getType() == 3) {
-				g.drawImage(IMAGE_BEES, bees.get(i).getX(), bees.get(i).getY(), this);
+				g.drawImage(IMAGE_BEES, bees.get(i).getX(), bees.get(i).getY(), 50, 50, this);
 			} else if (bees.get(i).getType() == 1) {
-				g.drawImage(IMAGE_BEES, bees.get(i).getX(), bees.get(i).getY(), this);
+				g.drawImage(IMAGE_BEES, bees.get(i).getX(), bees.get(i).getY(), 50, 50,  this);
 			} else {
-				g.drawImage(IMAGE_BEES, bees.get(i).getX(), bees.get(i).getY(), this);
+				g.drawImage(IMAGE_BEES, bees.get(i).getX(), bees.get(i).getY(), 50, 50,  this);
 			}
 		}
+		
 	}
 	
 	public int getSizeWindowInX() {
